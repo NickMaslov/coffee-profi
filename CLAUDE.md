@@ -56,6 +56,7 @@ break_even_cups_per_day = fixed_costs_per_day / (price_per_cup - variable_cost_p
 - Chart shows revenue line vs. total cost line — break-even is where they cross
 - Mobile-friendly layout
 - No backend, no auth, no database — pure client-side
+- Currency: **USD ($)**, target market is the US (NYC-realistic default values)
 
 ## Theming
 
@@ -66,10 +67,10 @@ break_even_cups_per_day = fixed_costs_per_day / (price_per_cup - variable_cost_p
 
 ## Internationalization
 
-- Languages: **Russian** (default) and **English**
+- Languages: **English** (default), **Russian**, **Spanish**
 - Library: `i18next` + `react-i18next`
-- Translation keys in `src/i18n/ru.json` and `src/i18n/en.json`
-- Language switcher: small unobtrusive button in the **top-right corner** (e.g. `RU | EN`)
+- Translation keys in `src/i18n/en.json`, `src/i18n/ru.json`, `src/i18n/es.json`
+- Language switcher: small unobtrusive **dropdown** in the **top-right corner** (e.g. `🌐 English ▾` with options English / Русский)
 - Language preference saved to `localStorage`
 
 ## What NOT to do

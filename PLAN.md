@@ -50,9 +50,9 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [ ] Chart colors switch with theme
 
 ### Step 7: Internationalization
-- [ ] Set up `i18next` with `ru.json` and `en.json` translation files
+- [ ] Set up `i18next` with `en.json`, `ru.json`, `es.json` translation files
 - [ ] All UI strings go through `t('key')` — no hardcoded text
-- [ ] `LanguageSwitcher` component — small `RU | EN` toggle in top-right corner
+- [ ] `LanguageSwitcher` component — small dropdown in top-right corner (`🌐 English ▾` / `Русский`)
 - [ ] Language preference saved to `localStorage`
 
 ### Step 8: Polish
@@ -80,22 +80,22 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 
 ---
 
-## Default values (realistic Moscow coffee shop)
+## Default values (realistic NYC coffee shop)
 
 | Parameter | Default |
 |---|---|
-| Rent | 80,000 ₽/month |
-| Salaries | 120,000 ₽/month |
-| Utilities | 15,000 ₽/month |
-| Equipment amortization | 20,000 ₽/month |
-| Marketing | 10,000 ₽/month |
-| Coffee beans (per cup) | 30 ₽ |
-| Milk (per cup) | 15 ₽ |
-| Cup + lid (per cup) | 10 ₽ |
-| Syrups (per cup) | 5 ₽ |
-| Price per cup | 200 ₽ |
+| Rent | $5,000/month |
+| Salaries | $8,000/month |
+| Utilities | $800/month |
+| Equipment amortization | $600/month |
+| Marketing | $400/month |
+| Coffee beans (per cup) | $0.50 |
+| Milk (per cup) | $0.40 |
+| Cup + lid (per cup) | $0.20 |
+| Syrups (per cup) | $0.15 |
+| Price per cup | $6.00 |
 
-Break-even with these defaults: ~107 cups/day (~3,200/month)
+Break-even with these defaults: ~109 cups/day (~3,300/month)
 
 ---
 
@@ -121,8 +121,9 @@ coffee-profi/
     │   └── themes.css          ← CSS custom properties (light/dark)
     ├── i18n/
     │   ├── index.ts            ← i18next setup
+    │   ├── en.json             ← English strings
     │   ├── ru.json             ← Russian strings
-    │   └── en.json             ← English strings
+    │   └── es.json             ← Spanish strings
     └── components/
         ├── InputSlider.tsx
         ├── CostsPanel.tsx

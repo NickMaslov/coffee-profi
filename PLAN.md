@@ -8,57 +8,49 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 
 ---
 
-## Phase 1 — Core MVP (Coffee only)
+## Phase 1 — Core MVP (Coffee only) ✅ COMPLETE
 
-### Step 1: Project scaffold
-- [ ] `npm create vite@latest` with React + TypeScript template
-- [ ] Install dependencies: `recharts`, `i18next`, `react-i18next`
-- [ ] Set up folder structure: `src/components/`, `src/utils/`, `src/types.ts`, `src/i18n/`
-- [ ] CSS reset, layout, and `src/styles/themes.css` with CSS custom properties
+### Step 1: Project scaffold ✅
+- [x] Vite + React + TypeScript project
+- [x] Dependencies: `recharts`, `i18next`, `react-i18next`
+- [x] Folder structure: `src/components/`, `src/utils/`, `src/types.ts`, `src/i18n/`, `src/styles/`
+- [x] CSS reset, layout, `src/styles/themes.css` with CSS custom properties
 
-### Step 2: Types and calculation engine
-- [ ] Define TypeScript types: `FixedCosts`, `VariableCosts`, `RevenueInputs`, `BreakEvenResult`
-- [ ] Write pure functions in `src/utils/calculations.ts`:
-  - `calcBreakEvenCupsPerDay(fixed, variable, price)`
-  - `calcDailyProfit(cups, price, variable, fixed)`
-  - `calcChartData(range, fixed, variable, price)` → array of points for chart
+### Step 2: Types and calculation engine ✅
+- [x] TypeScript types: `FixedCosts`, `VariableCosts`, `RevenueInputs`, `BreakEvenResult`, `ChartDataPoint`
+- [x] Pure functions in `src/utils/calculations.ts`:
+  - `calcBreakEven(fixed, variable, revenue)`
+  - `calcDailyProfit(cups, fixed, variable, revenue)`
+  - `calcChartData(fixed, variable, revenue)` → array of points for chart
 
-### Step 3: State management
-- [ ] React context with `useReducer` (simple, no extra library for v1)
-- [ ] Default values: realistic Moscow coffee shop numbers
-- [ ] All inputs in one flat state object
+### Step 3: State management ✅
+- [x] React context with `useReducer` (`src/store/AppContext.tsx`)
+- [x] Default values: realistic NYC coffee shop numbers
+- [x] Theme and language persisted to `localStorage`
 
-### Step 4: Input UI
-- [ ] `InputSlider` component — slider + numeric input, synced
-- [ ] `CostsPanel` — left column with all fixed and variable cost inputs
-- [ ] `RevenuePanel` — price per cup + target cups per day
+### Step 4: Input UI ✅
+- [x] `InputSlider` component — slider + numeric input, synced
+- [x] `CostsPanel` — fixed costs + variable costs
+- [x] `RevenuePanel` — price per cup + cups sold per day
 
-### Step 5: Results and chart
-- [ ] `BreakEvenResult` component — big number: "Break-even: 87 cups/day"
-- [ ] `BreakEvenChart` component (Recharts `LineChart`):
-  - X axis: cups per day (0 → 200)
-  - Y axis: money (₽ / day)
-  - Line 1 (red): total costs (fixed + variable × cups)
-  - Line 2 (green): revenue (price × cups)
-  - Reference line at break-even point
-- [ ] `SummaryCard` — monthly view: revenue, costs, profit/loss
+### Step 5: Results and chart ✅
+- [x] `BreakEvenResult` — big number, profit/loss zone indicator
+- [x] `BreakEvenChart` (Recharts `LineChart`) — Revenue vs. Total Costs, break-even reference line
+- [x] `SummaryCard` — monthly revenue, costs, profit/loss, margin per cup
 
-### Step 6: Theming
-- [ ] CSS custom properties for all colors in `themes.css` (light + dark tokens)
-- [ ] `ThemeToggle` button — sun/moon icon, saves to `localStorage`
-- [ ] Apply `data-theme` to `<html>`, Recharts colors read from CSS vars via JS
-- [ ] Chart colors switch with theme
+### Step 6: Theming ✅
+- [x] CSS custom properties in `themes.css` (light + dark tokens)
+- [x] `ThemeToggle` — sun/moon button, saves to `localStorage`
+- [x] `data-theme` on `<html>`, Recharts colors via `getComputedStyle`
 
-### Step 7: Internationalization
-- [ ] Set up `i18next` with `en.json`, `ru.json`, `es.json` translation files
-- [ ] All UI strings go through `t('key')` — no hardcoded text
-- [ ] `LanguageSwitcher` component — small dropdown in top-right corner (`🌐 English ▾` / `Русский`)
-- [ ] Language preference saved to `localStorage`
+### Step 7: Internationalization ✅
+- [x] `i18next` with `en.json`, `ru.json`, `es.json`
+- [x] All UI strings through `t('key')` — no hardcoded text
+- [x] `LanguageSwitcher` — dropdown in top-right corner, saves to `localStorage`
 
-### Step 8: Polish
+### Step 8: Polish (next)
 - [ ] Responsive layout (mobile-first)
-- [ ] Color coding: red = loss zone, green = profit zone
-- [ ] Tooltips on sliders with descriptions
+- [ ] Color shading on chart: red zone below break-even, green zone above
 - [ ] Animate chart when values change
 
 ---
@@ -118,19 +110,22 @@ coffee-profi/
     ├── utils/
     │   └── calculations.ts
     ├── styles/
-    │   └── themes.css          ← CSS custom properties (light/dark)
+    │   ├── themes.css          ← CSS custom properties (light/dark)
+    │   └── global.css          ← reset + body styles
     ├── i18n/
     │   ├── index.ts            ← i18next setup
-    │   ├── en.json             ← English strings
-    │   ├── ru.json             ← Russian strings
-    │   └── es.json             ← Spanish strings
+    │   ├── en.json
+    │   ├── ru.json
+    │   └── es.json
     └── components/
-        ├── InputSlider.tsx
+        ├── InputSlider.tsx / .module.css
         ├── CostsPanel.tsx
         ├── RevenuePanel.tsx
-        ├── BreakEvenChart.tsx
-        ├── BreakEvenResult.tsx
-        ├── SummaryCard.tsx
-        ├── ThemeToggle.tsx     ← sun/moon button
-        └── LanguageSwitcher.tsx ← RU | EN button (top-right corner)
+        ├── Panel.module.css    ← shared panel styles
+        ├── BreakEvenChart.tsx / .module.css
+        ├── BreakEvenResult.tsx / .module.css
+        ├── SummaryCard.tsx / .module.css
+        ├── ThemeToggle.tsx
+        ├── LanguageSwitcher.tsx
+        └── TopBar.module.css   ← header + controls styles
 ```

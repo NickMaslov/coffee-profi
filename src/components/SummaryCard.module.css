@@ -1,0 +1,60 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.rowLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.rowValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.costValue {
+  color: var(--loss);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.big {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.profitVal {
+  color: var(--profit);
+}
+
+.lossVal {
+  color: var(--loss);
+}

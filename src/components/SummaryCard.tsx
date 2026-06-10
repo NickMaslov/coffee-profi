@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
-import { calcBreakEven, calcBlendedRevenue, calcBlendedVariableCost } from '../utils/calculations'
+import { calcBreakEven, calcBlendedRevenue, calcBlendedVariableCost, calcTotalUnitsPerDay } from '../utils/calculations'
 import { IconTrendingUp, IconCoffee } from './icons'
 import styles from './SummaryCard.module.css'
 
@@ -15,17 +15,18 @@ function fmtCup(n: number) {
 export function SummaryCard() {
   const { t } = useTranslation()
   const { state } = useAppState()
-  const { fixedCosts, products, revenue } = state
+  const { fixedCosts, products } = state
 
+  const totalUnits = calcTotalUnitsPerDay(products)
   const blendedRevPerUnit = calcBlendedRevenue(products)
   const blendedVarPerUnit = calcBlendedVariableCost(products)
   const monthlyFixed = Object.values(fixedCosts).reduce((a, b) => a + b, 0)
-  const monthlyRevenue = revenue.unitsPerDay * blendedRevPerUnit * 30
-  const monthlyVariable = revenue.unitsPerDay * blendedVarPerUnit * 30
+  const monthlyRevenue = totalUnits * blendedRevPerUnit * 30
+  const monthlyVariable = totalUnits * blendedVarPerUnit * 30
   const monthlyCosts = monthlyFixed + monthlyVariable
   const profit = monthlyRevenue - monthlyCosts
   const isProfit = profit >= 0
-  const breakEven = calcBreakEven(fixedCosts, products, revenue)
+  const breakEven = calcBreakEven(fixedCosts, products)
 
   return (
     <div className={styles.card}>
@@ -56,11 +57,7 @@ export function SummaryCard() {
       </div>
 
       <div className={styles.barSection}>
-        <div className={styles.barLabels}>
-          <span className={styles.barLabel}>{t('monthlyRevenue')}</span>
-          <span className={styles.barLabel}>{t('monthlyCosts')}</span>
-        </div>
-        <div className={styles.barTrack}>
+<div className={styles.barTrack}>
           <div
             className={styles.barRevenue}
             style={{ width: `${Math.min(100, (monthlyRevenue / Math.max(monthlyRevenue, monthlyCosts)) * 100)}%` }}

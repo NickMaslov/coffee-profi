@@ -6,23 +6,20 @@ export interface FixedCosts {
   marketing: number
 }
 
+export type ProductIcon = 'coffee' | 'tea' | 'dessert' | 'beer' | 'sandwich' | 'star'
+
 export interface Product {
   id: string
-  nameKey: string
-  iconKey: string
+  name: string
+  iconKey: ProductIcon
   pricePerUnit: number
   variableCostPerUnit: number
-  salesSharePct: number
-}
-
-export interface RevenueInputs {
   unitsPerDay: number
 }
 
 export interface AppState {
   fixedCosts: FixedCosts
   products: Product[]
-  revenue: RevenueInputs
   theme: 'light' | 'dark'
   language: 'en' | 'ru' | 'es'
 }

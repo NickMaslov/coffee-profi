@@ -4,7 +4,7 @@ import {
   ReferenceLine, ReferenceArea, ResponsiveContainer, Legend
 } from 'recharts'
 import { useAppState } from '../store/AppContext'
-import { calcChartData, calcBreakEven } from '../utils/calculations'
+import { calcChartData, calcBreakEven, calcTotalUnitsPerDay } from '../utils/calculations'
 import styles from './BreakEvenChart.module.css'
 
 function getCSSVar(name: string) {
@@ -18,8 +18,9 @@ function fmtDollar(v: number) {
 export function BreakEvenChart() {
   const { t } = useTranslation()
   const { state } = useAppState()
-  const data = calcChartData(state.fixedCosts, state.products, state.revenue)
-  const breakEven = calcBreakEven(state.fixedCosts, state.products, state.revenue)
+  const data = calcChartData(state.fixedCosts, state.products)
+  const breakEven = calcBreakEven(state.fixedCosts, state.products)
+  const currentUnits = calcTotalUnitsPerDay(state.products)
   const maxUnits = data[data.length - 1]?.units ?? 200
 
   const colors = {
@@ -57,19 +58,8 @@ export function BreakEvenChart() {
             <ReferenceArea x1={breakEven.unitsPerDay} x2={maxUnits} fill="url(#profitGrad)" />
           )}
 
-          <XAxis
-            dataKey="units"
-            tick={{ fontSize: 11, fill: colors.text }}
-            tickLine={false}
-            axisLine={{ stroke: colors.grid }}
-          />
-          <YAxis
-            tickFormatter={fmtDollar}
-            tick={{ fontSize: 11, fill: colors.text }}
-            tickLine={false}
-            axisLine={false}
-            width={60}
-          />
+          <XAxis dataKey="units" tick={{ fontSize: 11, fill: colors.text }} tickLine={false} axisLine={{ stroke: colors.grid }} />
+          <YAxis tickFormatter={fmtDollar} tick={{ fontSize: 11, fill: colors.text }} tickLine={false} axisLine={false} width={60} />
           <Tooltip
             formatter={(value: number, name: string) => [fmtDollar(value), name]}
             labelFormatter={(label: number) => `${label} units/day`}
@@ -82,9 +72,7 @@ export function BreakEvenChart() {
               boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
             }}
           />
-          <Legend
-            wrapperStyle={{ fontSize: '12px', color: colors.text, paddingTop: '10px' }}
-          />
+          <Legend wrapperStyle={{ fontSize: '12px', color: colors.text, paddingTop: '10px' }} />
 
           {isFinite(breakEven.unitsPerDay) && (
             <ReferenceLine
@@ -92,34 +80,21 @@ export function BreakEvenChart() {
               stroke={colors.breakeven}
               strokeDasharray="5 4"
               strokeWidth={2}
-              label={{
-                value: `BE: ${breakEven.unitsPerDay}`,
-                position: 'insideTopRight',
-                fontSize: 11,
-                fontWeight: 700,
-                fill: colors.breakeven,
-              }}
+              label={{ value: `BE: ${breakEven.unitsPerDay}`, position: 'insideTopRight', fontSize: 11, fontWeight: 700, fill: colors.breakeven }}
             />
           )}
 
-          <Line
-            type="monotone"
-            dataKey="revenue"
-            name={t('revenue_line')}
-            stroke={colors.revenue}
-            strokeWidth={2.5}
-            dot={false}
-            activeDot={{ r: 5, strokeWidth: 0 }}
-          />
-          <Line
-            type="monotone"
-            dataKey="totalCosts"
-            name={t('costs_line')}
-            stroke={colors.costs}
-            strokeWidth={2.5}
-            dot={false}
-            activeDot={{ r: 5, strokeWidth: 0 }}
-          />
+          {currentUnits > 0 && (
+            <ReferenceLine
+              x={currentUnits}
+              stroke={currentUnits >= breakEven.unitsPerDay ? colors.profitZone : colors.lossZone}
+              strokeWidth={2}
+              label={{ value: `▶ ${currentUnits}`, position: 'insideTopLeft', fontSize: 11, fontWeight: 700, fill: currentUnits >= breakEven.unitsPerDay ? colors.profitZone : colors.lossZone }}
+            />
+          )}
+
+          <Line type="monotone" dataKey="revenue" name={t('revenue_line')} stroke={colors.revenue} strokeWidth={2.5} dot={false} activeDot={{ r: 5, strokeWidth: 0 }} />
+          <Line type="monotone" dataKey="totalCosts" name={t('costs_line')} stroke={colors.costs} strokeWidth={2.5} dot={false} activeDot={{ r: 5, strokeWidth: 0 }} />
         </LineChart>
       </ResponsiveContainer>
     </div>

@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { AppProvider } from './store/AppContext'
 import { CostsPanel } from './components/CostsPanel'
 import { MenuPanel } from './components/MenuPanel'
-import { RevenuePanel } from './components/RevenuePanel'
 import { BreakEvenResult } from './components/BreakEvenResult'
 import { BreakEvenChart } from './components/BreakEvenChart'
 import { SummaryCard } from './components/SummaryCard'
@@ -45,7 +44,6 @@ function AppInner() {
           <aside className={styles.sidebar}>
             <CostsPanel />
             <MenuPanel />
-            <RevenuePanel />
           </aside>
 
           <section className={styles.content}>

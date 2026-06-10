@@ -57,7 +57,13 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] Blended break-even: `dailyFixed / sum(share% * margin_per_unit)`
 - [x] `MenuPanel` + `ProductCard` components — price, variable cost, sales share per product
 - [x] 3 default products: Coffee (60%), Tea (25%), Dessert (15%)
-- [x] Warning shown when sales shares don't sum to 100%
+- [x] Add / remove products dynamically (can't delete the last one)
+- [x] Editable product name (inline text input)
+- [x] Icon picker: coffee, tea, dessert, beer, sandwich, star
+- [x] Per-product `unitsPerDay` replaces global sales volume and `salesSharePct`
+- [x] Current sales shown alongside break-even in the result card
+- [x] Current sales marker line on break-even chart (green/red)
+- [x] Accordion max-height raised to prevent clipping with many products
 - [x] i18n updated for all three languages
 
 ---

@@ -2,27 +2,33 @@ import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
 import { Accordion } from './Accordion'
 import { ProductCard } from './ProductCard'
+import { IconPlus } from './icons'
+import { calcTotalUnitsPerDay } from '../utils/calculations'
+import styles from './MenuPanel.module.css'
 
 export function MenuPanel() {
   const { t } = useTranslation()
-  const { state } = useAppState()
-  const total = state.products.reduce((s, p) => s + p.salesSharePct, 0)
+  const { state, dispatch } = useAppState()
+  const totalUnits = calcTotalUnitsPerDay(state.products)
 
   return (
     <Accordion
       title={t('menuItems')}
-      desc={`${t('menuItemsDesc')} (${total}% total)`}
+      desc={`${t('menuItemsDesc')} · ${totalUnits} ${t('unitsPerDayShort')}`}
       defaultOpen
     >
       <div>
         {state.products.map(p => (
-          <ProductCard key={p.id} product={p} />
+          <ProductCard key={p.id} product={p} canDelete={state.products.length > 1} />
         ))}
-        {total !== 100 && (
-          <p style={{ fontSize: 12, color: 'var(--loss)', marginTop: 4 }}>
-            {t('salesShareWarning', { total })}
-          </p>
-        )}
+
+        <button
+          className={styles.addBtn}
+          onClick={() => dispatch({ type: 'ADD_PRODUCT' })}
+        >
+          <IconPlus size={14} />
+          {t('addItem')}
+        </button>
       </div>
     </Accordion>
   )

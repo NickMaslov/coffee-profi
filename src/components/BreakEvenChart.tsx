@@ -18,9 +18,9 @@ function fmtDollar(v: number) {
 export function BreakEvenChart() {
   const { t } = useTranslation()
   const { state } = useAppState()
-  const data = calcChartData(state.fixedCosts, state.variableCosts, state.revenue)
-  const breakEven = calcBreakEven(state.fixedCosts, state.variableCosts, state.revenue)
-  const maxCups = data[data.length - 1]?.cups ?? 200
+  const data = calcChartData(state.fixedCosts, state.products, state.revenue)
+  const breakEven = calcBreakEven(state.fixedCosts, state.products, state.revenue)
+  const maxUnits = data[data.length - 1]?.units ?? 200
 
   const colors = {
     revenue: getCSSVar('--chart-revenue'),
@@ -50,15 +50,15 @@ export function BreakEvenChart() {
 
           <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} vertical={false} />
 
-          {isFinite(breakEven.cupsPerDay) && (
-            <ReferenceArea x1={0} x2={breakEven.cupsPerDay} fill="url(#lossGrad)" />
+          {isFinite(breakEven.unitsPerDay) && (
+            <ReferenceArea x1={0} x2={breakEven.unitsPerDay} fill="url(#lossGrad)" />
           )}
-          {isFinite(breakEven.cupsPerDay) && (
-            <ReferenceArea x1={breakEven.cupsPerDay} x2={maxCups} fill="url(#profitGrad)" />
+          {isFinite(breakEven.unitsPerDay) && (
+            <ReferenceArea x1={breakEven.unitsPerDay} x2={maxUnits} fill="url(#profitGrad)" />
           )}
 
           <XAxis
-            dataKey="cups"
+            dataKey="units"
             tick={{ fontSize: 11, fill: colors.text }}
             tickLine={false}
             axisLine={{ stroke: colors.grid }}
@@ -72,7 +72,7 @@ export function BreakEvenChart() {
           />
           <Tooltip
             formatter={(value: number, name: string) => [fmtDollar(value), name]}
-            labelFormatter={(label: number) => `${label} cups/day`}
+            labelFormatter={(label: number) => `${label} units/day`}
             contentStyle={{
               background: getCSSVar('--bg-card'),
               border: `1px solid ${getCSSVar('--border')}`,
@@ -86,14 +86,14 @@ export function BreakEvenChart() {
             wrapperStyle={{ fontSize: '12px', color: colors.text, paddingTop: '10px' }}
           />
 
-          {isFinite(breakEven.cupsPerDay) && (
+          {isFinite(breakEven.unitsPerDay) && (
             <ReferenceLine
-              x={breakEven.cupsPerDay}
+              x={breakEven.unitsPerDay}
               stroke={colors.breakeven}
               strokeDasharray="5 4"
               strokeWidth={2}
               label={{
-                value: `BE: ${breakEven.cupsPerDay}`,
+                value: `BE: ${breakEven.unitsPerDay}`,
                 position: 'insideTopRight',
                 fontSize: 11,
                 fontWeight: 700,

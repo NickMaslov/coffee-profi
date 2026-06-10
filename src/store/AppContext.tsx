@@ -1,6 +1,12 @@
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react'
 import i18n from '../i18n'
-import type { AppState } from '../types'
+import type { AppState, Product } from '../types'
+
+const defaultProducts: Product[] = [
+  { id: 'coffee', nameKey: 'productCoffee', iconKey: 'coffee', pricePerUnit: 6.00, variableCostPerUnit: 1.25, salesSharePct: 60 },
+  { id: 'tea', nameKey: 'productTea', iconKey: 'tea', pricePerUnit: 4.50, variableCostPerUnit: 0.60, salesSharePct: 25 },
+  { id: 'dessert', nameKey: 'productDessert', iconKey: 'dessert', pricePerUnit: 5.00, variableCostPerUnit: 1.80, salesSharePct: 15 },
+]
 
 const defaultState: AppState = {
   fixedCosts: {
@@ -10,15 +16,9 @@ const defaultState: AppState = {
     equipmentAmortization: 600,
     marketing: 400,
   },
-  variableCosts: {
-    coffeeBeans: 0.50,
-    milk: 0.40,
-    cupAndLid: 0.20,
-    syrups: 0.15,
-  },
+  products: defaultProducts,
   revenue: {
-    pricePerCup: 6.00,
-    cupsPerDay: 100,
+    unitsPerDay: 100,
   },
   theme: (localStorage.getItem('theme') as 'light' | 'dark') ?? 'light',
   language: (localStorage.getItem('language') as 'en' | 'ru' | 'es') ?? 'en',
@@ -26,7 +26,7 @@ const defaultState: AppState = {
 
 type Action =
   | { type: 'SET_FIXED'; key: keyof AppState['fixedCosts']; value: number }
-  | { type: 'SET_VARIABLE'; key: keyof AppState['variableCosts']; value: number }
+  | { type: 'SET_PRODUCT'; id: string; key: keyof Omit<Product, 'id' | 'nameKey' | 'iconKey'>; value: number }
   | { type: 'SET_REVENUE'; key: keyof AppState['revenue']; value: number }
   | { type: 'SET_THEME'; value: 'light' | 'dark' }
   | { type: 'SET_LANGUAGE'; value: 'en' | 'ru' | 'es' }
@@ -35,8 +35,13 @@ function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'SET_FIXED':
       return { ...state, fixedCosts: { ...state.fixedCosts, [action.key]: action.value } }
-    case 'SET_VARIABLE':
-      return { ...state, variableCosts: { ...state.variableCosts, [action.key]: action.value } }
+    case 'SET_PRODUCT':
+      return {
+        ...state,
+        products: state.products.map(p =>
+          p.id === action.id ? { ...p, [action.key]: action.value } : p
+        ),
+      }
     case 'SET_REVENUE':
       return { ...state, revenue: { ...state.revenue, [action.key]: action.value } }
     case 'SET_THEME':

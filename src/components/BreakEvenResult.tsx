@@ -7,10 +7,10 @@ import styles from './BreakEvenResult.module.css'
 export function BreakEvenResult() {
   const { t } = useTranslation()
   const { state } = useAppState()
-  const result = calcBreakEven(state.fixedCosts, state.variableCosts, state.revenue)
-  const currentCups = state.revenue.cupsPerDay
-  const isProfitable = currentCups >= result.cupsPerDay
-  const pct = isFinite(result.cupsPerDay) ? Math.min(100, Math.round((currentCups / result.cupsPerDay) * 100)) : 100
+  const result = calcBreakEven(state.fixedCosts, state.products, state.revenue)
+  const currentUnits = state.revenue.unitsPerDay
+  const isProfitable = currentUnits >= result.unitsPerDay
+  const pct = isFinite(result.unitsPerDay) ? Math.min(100, Math.round((currentUnits / result.unitsPerDay) * 100)) : 100
 
   return (
     <div className={`${styles.card} ${isProfitable ? styles.profit : styles.loss}`}>
@@ -26,11 +26,11 @@ export function BreakEvenResult() {
 
       <div className={styles.label}>{t('breakEvenTitle')}</div>
       <div className={styles.mainNumber}>
-        {isFinite(result.cupsPerDay) ? result.cupsPerDay : '∞'}
+        {isFinite(result.unitsPerDay) ? result.unitsPerDay : '∞'}
       </div>
       <div className={styles.unit}>{t('breakEvenCupsDay')}</div>
       <div className={styles.sub}>
-        {isFinite(result.cupsPerMonth) ? result.cupsPerMonth.toLocaleString() : '∞'} {t('breakEvenCupsMonth')}
+        {isFinite(result.unitsPerMonth) ? result.unitsPerMonth.toLocaleString() : '∞'} {t('breakEvenCupsMonth')}
       </div>
 
       <div className={styles.progressWrap}>

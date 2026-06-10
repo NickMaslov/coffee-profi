@@ -2,7 +2,7 @@
 
 ## Goal
 
-Web app that answers the question: **"How many cups of coffee per day do I need to sell to break even?"**
+Web app that answers the question: **"How many items per day do I need to sell to break even?"**
 
 Target user: an entrepreneur planning to open a coffee shop. No finance degree required — everything should be intuitive.
 
@@ -18,10 +18,7 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 
 ### Step 2: Types and calculation engine ✅
 - [x] TypeScript types: `FixedCosts`, `VariableCosts`, `RevenueInputs`, `BreakEvenResult`, `ChartDataPoint`
-- [x] Pure functions in `src/utils/calculations.ts`:
-  - `calcBreakEven(fixed, variable, revenue)`
-  - `calcDailyProfit(cups, fixed, variable, revenue)`
-  - `calcChartData(fixed, variable, revenue)` → array of points for chart
+- [x] Pure functions in `src/utils/calculations.ts`
 
 ### Step 3: State management ✅
 - [x] React context with `useReducer` (`src/store/AppContext.tsx`)
@@ -30,45 +27,45 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 
 ### Step 4: Input UI ✅
 - [x] `InputSlider` component — slider + numeric input, synced
-- [x] `CostsPanel` — fixed costs + variable costs
-- [x] `RevenuePanel` — price per cup + cups sold per day
+- [x] `CostsPanel` — fixed costs
+- [x] `RevenuePanel` — daily sales volume
 
 ### Step 5: Results and chart ✅
 - [x] `BreakEvenResult` — big number, profit/loss zone indicator
 - [x] `BreakEvenChart` (Recharts `LineChart`) — Revenue vs. Total Costs, break-even reference line
-- [x] `SummaryCard` — monthly revenue, costs, profit/loss, margin per cup
+- [x] `SummaryCard` — monthly revenue, costs, profit/loss, blended margin
 
 ### Step 6: Theming ✅
 - [x] CSS custom properties in `themes.css` (light + dark tokens)
 - [x] `ThemeToggle` — sun/moon button, saves to `localStorage`
-- [x] `data-theme` on `<html>`, Recharts colors via `getComputedStyle`
 
 ### Step 7: Internationalization ✅
 - [x] `i18next` with `en.json`, `ru.json`, `es.json`
-- [x] All UI strings through `t('key')` — no hardcoded text
-- [x] `LanguageSwitcher` — dropdown in top-right corner, saves to `localStorage`
+- [x] `LanguageSwitcher` — icon-only globe dropdown
 
 ### Step 8: Polish ✅
-- [x] Responsive layout (mobile-first) — compact topbar, tighter padding, smaller BE number on mobile
-- [x] Color shading on chart: red zone below break-even, green zone above (ReferenceArea)
-- [x] Language switcher → icon-only globe button with custom dropdown (no text label)
-- [x] Accordion flex-shrink:0 fix — content no longer clipped on short screens
-- [x] Both columns scroll as one page, all scrollbars hidden globally
+- [x] Responsive layout (mobile-first)
+- [x] Color shading on chart (loss/profit zones)
+- [x] Accordion panels with smooth animation
 
 ---
 
-## Phase 2 — Multiple menu items (future)
+## Phase 2 — Multiple menu items ✅ COMPLETE
 
-- Add tea, desserts as separate product categories
-- Each product has its own price + variable cost + estimated % of daily sales
-- Blended break-even across the whole menu
-- Architecture note: `FixedCosts` stays the same, `products: Product[]` replaces single coffee inputs
+- [x] `Product` type: `{ id, nameKey, iconKey, pricePerUnit, variableCostPerUnit, salesSharePct }`
+- [x] `VariableCosts` removed; replaced by `products: Product[]`
+- [x] Blended break-even: `dailyFixed / sum(share% * margin_per_unit)`
+- [x] `MenuPanel` + `ProductCard` components — price, variable cost, sales share per product
+- [x] 3 default products: Coffee (60%), Tea (25%), Dessert (15%)
+- [x] Warning shown when sales shares don't sum to 100%
+- [x] i18n updated for all three languages
 
 ---
 
 ## Phase 3 — Scenarios (future)
 
 - Save and compare multiple scenarios (e.g. "small kiosk" vs "full café")
+- Add/remove menu items dynamically
 - Export to PDF
 - Shareable URL with encoded state
 
@@ -83,13 +80,10 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 | Utilities | $800/month |
 | Equipment amortization | $600/month |
 | Marketing | $400/month |
-| Coffee beans (per cup) | $0.50 |
-| Milk (per cup) | $0.40 |
-| Cup + lid (per cup) | $0.20 |
-| Syrups (per cup) | $0.15 |
-| Price per cup | $6.00 |
-
-Break-even with these defaults: ~109 cups/day (~3,300/month)
+| Coffee: price $6.00, var cost $1.25, 60% of sales |
+| Tea: price $4.50, var cost $0.60, 25% of sales |
+| Dessert: price $5.00, var cost $1.80, 15% of sales |
+| Items sold per day | 100 |
 
 ---
 
@@ -99,6 +93,7 @@ Break-even with these defaults: ~109 cups/day (~3,300/month)
 coffee-profi/
 ├── CLAUDE.md
 ├── PLAN.md
+├── README.md
 ├── index.html
 ├── vite.config.ts
 ├── tsconfig.json
@@ -107,27 +102,31 @@ coffee-profi/
     ├── main.tsx
     ├── App.tsx
     ├── types.ts
+    ├── vite-env.d.ts
     ├── store/
     │   └── AppContext.tsx
     ├── utils/
     │   └── calculations.ts
     ├── styles/
-    │   ├── themes.css          ← CSS custom properties (light/dark)
-    │   └── global.css          ← reset + body styles
+    │   ├── themes.css
+    │   └── global.css
     ├── i18n/
-    │   ├── index.ts            ← i18next setup
+    │   ├── index.ts
     │   ├── en.json
     │   ├── ru.json
     │   └── es.json
     └── components/
         ├── InputSlider.tsx / .module.css
         ├── CostsPanel.tsx
+        ├── MenuPanel.tsx           ← Phase 2: multi-product accordion
+        ├── ProductCard.tsx / .module.css  ← per-product sliders
         ├── RevenuePanel.tsx
-        ├── Panel.module.css    ← shared panel styles
         ├── BreakEvenChart.tsx / .module.css
         ├── BreakEvenResult.tsx / .module.css
         ├── SummaryCard.tsx / .module.css
         ├── ThemeToggle.tsx
         ├── LanguageSwitcher.tsx
-        └── TopBar.module.css   ← header + controls styles
+        ├── Accordion.tsx / .module.css
+        ├── icons.tsx
+        └── TopBar.module.css
 ```

@@ -6,36 +6,37 @@ export interface FixedCosts {
   marketing: number
 }
 
-export interface VariableCosts {
-  coffeeBeans: number
-  milk: number
-  cupAndLid: number
-  syrups: number
+export interface Product {
+  id: string
+  nameKey: string
+  iconKey: string
+  pricePerUnit: number
+  variableCostPerUnit: number
+  salesSharePct: number
 }
 
 export interface RevenueInputs {
-  pricePerCup: number
-  cupsPerDay: number
+  unitsPerDay: number
 }
 
 export interface AppState {
   fixedCosts: FixedCosts
-  variableCosts: VariableCosts
+  products: Product[]
   revenue: RevenueInputs
   theme: 'light' | 'dark'
   language: 'en' | 'ru' | 'es'
 }
 
 export interface BreakEvenResult {
-  cupsPerDay: number
-  cupsPerMonth: number
+  unitsPerDay: number
+  unitsPerMonth: number
   dailyFixedCosts: number
-  variableCostPerCup: number
-  marginPerCup: number
+  blendedMarginPerUnit: number
+  blendedVariableCostPerUnit: number
 }
 
 export interface ChartDataPoint {
-  cups: number
+  units: number
   revenue: number
   totalCosts: number
   fixedCosts: number

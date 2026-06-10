@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
-import { calcVariableCostPerCup } from '../utils/calculations'
+import { calcBreakEven, calcBlendedRevenue, calcBlendedVariableCost } from '../utils/calculations'
 import { IconTrendingUp, IconCoffee } from './icons'
 import styles from './SummaryCard.module.css'
 
@@ -15,16 +15,17 @@ function fmtCup(n: number) {
 export function SummaryCard() {
   const { t } = useTranslation()
   const { state } = useAppState()
-  const { fixedCosts, variableCosts, revenue } = state
+  const { fixedCosts, products, revenue } = state
 
-  const monthlyRevenue = revenue.cupsPerDay * revenue.pricePerCup * 30
+  const blendedRevPerUnit = calcBlendedRevenue(products)
+  const blendedVarPerUnit = calcBlendedVariableCost(products)
   const monthlyFixed = Object.values(fixedCosts).reduce((a, b) => a + b, 0)
-  const varCostPerCup = calcVariableCostPerCup(variableCosts)
-  const monthlyVariable = revenue.cupsPerDay * varCostPerCup * 30
+  const monthlyRevenue = revenue.unitsPerDay * blendedRevPerUnit * 30
+  const monthlyVariable = revenue.unitsPerDay * blendedVarPerUnit * 30
   const monthlyCosts = monthlyFixed + monthlyVariable
   const profit = monthlyRevenue - monthlyCosts
   const isProfit = profit >= 0
-  const marginPerCup = revenue.pricePerCup - varCostPerCup
+  const breakEven = calcBreakEven(fixedCosts, products, revenue)
 
   return (
     <div className={styles.card}>
@@ -46,10 +47,10 @@ export function SummaryCard() {
           <span className={`${styles.statValue} ${styles.red}`}>{fmt(monthlyCosts)}</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.statLabel}>{t('marginPerCup')}</span>
+          <span className={styles.statLabel}>{t('blendedMargin')}</span>
           <div className={styles.marginWrap}>
             <IconCoffee size={13} />
-            <span className={styles.statValue}>{fmtCup(marginPerCup)}</span>
+            <span className={styles.statValue}>{fmtCup(breakEven.blendedMarginPerUnit)}</span>
           </div>
         </div>
       </div>

@@ -48,10 +48,12 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] All UI strings through `t('key')` — no hardcoded text
 - [x] `LanguageSwitcher` — dropdown in top-right corner, saves to `localStorage`
 
-### Step 8: Polish (next)
-- [ ] Responsive layout (mobile-first)
-- [ ] Color shading on chart: red zone below break-even, green zone above
-- [ ] Animate chart when values change
+### Step 8: Polish ✅
+- [x] Responsive layout (mobile-first) — compact topbar, tighter padding, smaller BE number on mobile
+- [x] Color shading on chart: red zone below break-even, green zone above (ReferenceArea)
+- [x] Language switcher → icon-only globe button with custom dropdown (no text label)
+- [x] Accordion flex-shrink:0 fix — content no longer clipped on short screens
+- [x] Both columns scroll as one page, all scrollbars hidden globally
 
 ---
 

@@ -99,6 +99,15 @@
   transition: all 0.2s;
 }
 
+@media (max-width: 480px) {
+  .mainNumber {
+    font-size: 3rem;
+  }
+  .card {
+    padding: 18px 20px;
+  }
+}
+
 .unit {
   font-size: 0.9rem;
   font-weight: 500;

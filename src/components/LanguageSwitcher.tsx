@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react'
 import { useAppState } from '../store/AppContext'
 import styles from './TopBar.module.css'
 
@@ -9,20 +10,40 @@ const LANGUAGES = [
 
 export function LanguageSwitcher() {
   const { state, dispatch } = useAppState()
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
 
   return (
-    <div className={styles.langWrap}>
-      <span className={styles.globe}>🌐</span>
-      <select
-        className={styles.langSelect}
-        value={state.language}
-        onChange={e => dispatch({ type: 'SET_LANGUAGE', value: e.target.value as 'en' | 'ru' | 'es' })}
+    <div className={styles.langWrap} ref={ref}>
+      <button
+        className={styles.langBtn}
+        onClick={() => setOpen(o => !o)}
         aria-label="Select language"
+        aria-expanded={open}
       >
-        {LANGUAGES.map(l => (
-          <option key={l.code} value={l.code}>{l.label}</option>
-        ))}
-      </select>
+        <span className={styles.globe}>🌐</span>
+      </button>
+      {open && (
+        <div className={styles.langDropdown}>
+          {LANGUAGES.map(l => (
+            <button
+              key={l.code}
+              className={`${styles.langOption} ${state.language === l.code ? styles.langOptionActive : ''}`}
+              onClick={() => { dispatch({ type: 'SET_LANGUAGE', value: l.code }); setOpen(false) }}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

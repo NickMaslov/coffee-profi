@@ -7,6 +7,7 @@ import { BreakEvenChart } from './components/BreakEvenChart'
 import { SummaryCard } from './components/SummaryCard'
 import { ThemeToggle } from './components/ThemeToggle'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
+import { IconCoffee } from './components/icons'
 import topBarStyles from './components/TopBar.module.css'
 import styles from './App.module.css'
 
@@ -15,7 +16,14 @@ function AppInner() {
   return (
     <div className={styles.app}>
       <header className={topBarStyles.topbar}>
-        <div className={topBarStyles.logo}>☕ {t('appTitle')}</div>
+        <div className={topBarStyles.logoGroup}>
+          <div className={topBarStyles.logoCupWrap}>
+            <IconCoffee size={18} />
+          </div>
+          <span className={topBarStyles.logoText}>
+            Coffee <span>Profi</span>
+          </span>
+        </div>
         <div className={topBarStyles.controls}>
           <ThemeToggle />
           <LanguageSwitcher />
@@ -23,7 +31,14 @@ function AppInner() {
       </header>
 
       <main className={styles.main}>
-        <div className={styles.subtitle}>{t('appSubtitle')}</div>
+        <div className={styles.hero}>
+          <h1 className={styles.heroTitle}>{t('appSubtitle')}</h1>
+          <div className={styles.heroDecor}>
+            <span className={styles.decorDot} />
+            <span className={styles.decorDot} />
+            <span className={styles.decorDot} />
+          </div>
+        </div>
 
         <div className={styles.grid}>
           <aside className={styles.sidebar}>

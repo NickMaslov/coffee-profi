@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
+  padding: 0 24px;
+  height: 56px;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -11,43 +12,69 @@
   box-shadow: var(--shadow-sm);
 }
 
-.logo {
-  font-size: 1.1rem;
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoCupWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.logoText {
+  font-size: 1.05rem;
   font-weight: 800;
-  color: var(--accent);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
+}
+
+.logoText span {
+  color: var(--accent);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 6px 10px;
-  font-size: 1rem;
-  line-height: 1;
-  color: var(--text-primary);
-  transition: background 0.15s, border-color 0.15s;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .iconBtn:hover {
   background: var(--accent-light);
   border-color: var(--accent);
+  color: var(--accent);
 }
 
 .langWrap {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 4px 8px;
+  border-radius: 8px;
+  padding: 0 10px;
+  height: 34px;
   transition: border-color 0.15s;
 }
 
@@ -56,7 +83,7 @@
 }
 
 .globe {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   user-select: none;
 }
 

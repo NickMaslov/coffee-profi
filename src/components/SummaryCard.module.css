@@ -2,59 +2,120 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 20px;
   box-shadow: var(--shadow-sm);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .title {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 12px;
 }
 
-.rows {
+.profitChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.profitChipGreen {
+  background: var(--profit-bg);
+  color: var(--profit);
+  border: 1px solid var(--profit);
+}
+
+.profitChipRed {
+  background: var(--loss-bg);
+  color: var(--loss);
+  border: 1px solid var(--loss);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.statLabel {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
 }
 
-.rowLabel {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.rowValue {
-  font-size: 0.9rem;
-  font-weight: 600;
+.statValue {
+  font-size: 1rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
-.costValue {
-  color: var(--loss);
+.green { color: var(--profit) !important; }
+.red { color: var(--loss) !important; }
+
+.marginWrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary);
 }
 
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 4px 0;
+.barSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.big {
-  font-size: 1.1rem;
-  font-weight: 800;
+.barLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
 }
 
-.profitVal {
-  color: var(--profit);
+.barLabel {
+  font-weight: 500;
 }
 
-.lossVal {
-  color: var(--loss);
+.barTrack {
+  height: 8px;
+  background: var(--bg-input);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barRevenue {
+  height: 100%;
+  background: var(--profit);
+  border-radius: 4px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.barCosts {
+  height: 100%;
+  background: var(--loss);
+  border-radius: 4px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }

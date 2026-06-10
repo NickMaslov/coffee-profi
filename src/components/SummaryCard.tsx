@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
-import { calcDailyFixedCosts, calcVariableCostPerCup } from '../utils/calculations'
+import { calcVariableCostPerCup } from '../utils/calculations'
+import { IconTrendingUp, IconCoffee } from './icons'
 import styles from './SummaryCard.module.css'
 
 function fmt(n: number) {
@@ -27,26 +28,48 @@ export function SummaryCard() {
 
   return (
     <div className={styles.card}>
-      <h3 className={styles.title}>{t('summary')}</h3>
-      <div className={styles.rows}>
-        <div className={styles.row}>
-          <span className={styles.rowLabel}>{t('monthlyRevenue')}</span>
-          <span className={styles.rowValue}>{fmt(monthlyRevenue)}</span>
+      <div className={styles.header}>
+        <h3 className={styles.title}>{t('summary')}</h3>
+        <span className={`${styles.profitChip} ${isProfit ? styles.profitChipGreen : styles.profitChipRed}`}>
+          <IconTrendingUp size={13} />
+          {isProfit ? '+' : ''}{fmt(profit)}
+        </span>
+      </div>
+
+      <div className={styles.statsRow}>
+        <div className={styles.stat}>
+          <span className={styles.statLabel}>{t('monthlyRevenue')}</span>
+          <span className={`${styles.statValue} ${styles.green}`}>{fmt(monthlyRevenue)}</span>
         </div>
-        <div className={styles.row}>
-          <span className={styles.rowLabel}>{t('monthlyCosts')}</span>
-          <span className={`${styles.rowValue} ${styles.costValue}`}>{fmt(monthlyCosts)}</span>
+        <div className={styles.stat}>
+          <span className={styles.statLabel}>{t('monthlyCosts')}</span>
+          <span className={`${styles.statValue} ${styles.red}`}>{fmt(monthlyCosts)}</span>
         </div>
-        <div className={styles.divider} />
-        <div className={styles.row}>
-          <span className={styles.rowLabel}>{isProfit ? t('monthlyProfit') : t('monthlyLoss')}</span>
-          <span className={`${styles.rowValue} ${styles.big} ${isProfit ? styles.profitVal : styles.lossVal}`}>
-            {fmt(Math.abs(profit))}
-          </span>
+        <div className={styles.stat}>
+          <span className={styles.statLabel}>{t('marginPerCup')}</span>
+          <div className={styles.marginWrap}>
+            <IconCoffee size={13} />
+            <span className={styles.statValue}>{fmtCup(marginPerCup)}</span>
+          </div>
         </div>
-        <div className={styles.row}>
-          <span className={styles.rowLabel}>{t('marginPerCup')}</span>
-          <span className={styles.rowValue}>{fmtCup(marginPerCup)}</span>
+      </div>
+
+      <div className={styles.barSection}>
+        <div className={styles.barLabels}>
+          <span className={styles.barLabel}>{t('monthlyRevenue')}</span>
+          <span className={styles.barLabel}>{t('monthlyCosts')}</span>
+        </div>
+        <div className={styles.barTrack}>
+          <div
+            className={styles.barRevenue}
+            style={{ width: `${Math.min(100, (monthlyRevenue / Math.max(monthlyRevenue, monthlyCosts)) * 100)}%` }}
+          />
+        </div>
+        <div className={styles.barTrack}>
+          <div
+            className={styles.barCosts}
+            style={{ width: `${Math.min(100, (monthlyCosts / Math.max(monthlyRevenue, monthlyCosts)) * 100)}%` }}
+          />
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useAppState } from '../store/AppContext'
+import { IconSun, IconMoon } from './icons'
 import styles from './TopBar.module.css'
 
 export function ThemeToggle() {
@@ -12,7 +13,7 @@ export function ThemeToggle() {
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-label="Toggle theme"
     >
-      {isDark ? '☀️' : '🌙'}
+      {isDark ? <IconSun /> : <IconMoon />}
     </button>
   )
 }

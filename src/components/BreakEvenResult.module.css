@@ -1,9 +1,22 @@
 .card {
   border-radius: var(--radius-lg);
-  padding: 24px;
-  text-align: center;
-  border: 2px solid;
-  transition: background 0.2s, border-color 0.2s;
+  padding: 24px 28px;
+  border: 1.5px solid;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  opacity: 0.06;
+  background: currentColor;
 }
 
 .profit {
@@ -18,49 +31,123 @@
   color: var(--loss);
 }
 
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: currentColor;
+  color: var(--bg-card);
+}
+
+.profit .iconWrap {
+  background: var(--profit);
+  color: white;
+}
+
+.loss .iconWrap {
+  background: var(--loss);
+  color: white;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badgeProfit {
+  background: var(--profit);
+  color: white;
+}
+
+.badgeLoss {
+  background: var(--loss);
+  color: white;
+}
+
 .label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
-  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+  opacity: 0.65;
+  margin-bottom: 4px;
 }
 
 .mainNumber {
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-size: 4rem;
+  font-weight: 900;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  letter-spacing: -0.03em;
+  transition: all 0.2s;
 }
 
 .unit {
   font-size: 0.9rem;
   font-weight: 500;
-  opacity: 0.8;
-  margin-bottom: 8px;
+  opacity: 0.75;
+  margin-bottom: 4px;
 }
 
 .sub {
   font-size: 0.82rem;
-  opacity: 0.65;
-  margin-bottom: 12px;
+  opacity: 0.55;
+  margin-bottom: 16px;
 }
 
-.badge {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: currentColor;
-  color: var(--bg-card);
+.progressWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.profit .badge {
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .progressBar {
+  background: rgba(255,255,255,0.1);
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressProfit {
   background: var(--profit);
 }
 
-.loss .badge {
+.progressLoss {
   background: var(--loss);
+}
+
+.progressLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.7;
+  min-width: 36px;
+  text-align: right;
 }

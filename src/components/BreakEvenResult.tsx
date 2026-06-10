@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
 import { calcBreakEven } from '../utils/calculations'
+import { IconTrendingUp, IconCoffee } from './icons'
 import styles from './BreakEvenResult.module.css'
 
 export function BreakEvenResult() {
@@ -9,9 +10,20 @@ export function BreakEvenResult() {
   const result = calcBreakEven(state.fixedCosts, state.variableCosts, state.revenue)
   const currentCups = state.revenue.cupsPerDay
   const isProfitable = currentCups >= result.cupsPerDay
+  const pct = isFinite(result.cupsPerDay) ? Math.min(100, Math.round((currentCups / result.cupsPerDay) * 100)) : 100
 
   return (
     <div className={`${styles.card} ${isProfitable ? styles.profit : styles.loss}`}>
+      <div className={styles.topRow}>
+        <div className={styles.iconWrap}>
+          <IconCoffee size={22} />
+        </div>
+        <span className={`${styles.badge} ${isProfitable ? styles.badgeProfit : styles.badgeLoss}`}>
+          <IconTrendingUp size={12} />
+          {isProfitable ? t('profitZone') : t('lossZone')}
+        </span>
+      </div>
+
       <div className={styles.label}>{t('breakEvenTitle')}</div>
       <div className={styles.mainNumber}>
         {isFinite(result.cupsPerDay) ? result.cupsPerDay : '∞'}
@@ -20,8 +32,15 @@ export function BreakEvenResult() {
       <div className={styles.sub}>
         {isFinite(result.cupsPerMonth) ? result.cupsPerMonth.toLocaleString() : '∞'} {t('breakEvenCupsMonth')}
       </div>
-      <div className={styles.badge}>
-        {isProfitable ? `✓ ${t('profitZone')}` : `✗ ${t('lossZone')}`}
+
+      <div className={styles.progressWrap}>
+        <div className={styles.progressBar}>
+          <div
+            className={`${styles.progressFill} ${isProfitable ? styles.progressProfit : styles.progressLoss}`}
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+        <span className={styles.progressLabel}>{pct}%</span>
       </div>
     </div>
   )

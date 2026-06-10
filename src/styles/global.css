@@ -23,6 +23,14 @@ body {
   min-height: 100vh;
 }
 
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 button {
   cursor: pointer;
   font-family: inherit;

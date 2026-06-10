@@ -6,21 +6,46 @@
 
 .main {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   width: 100%;
-  padding: 24px 16px;
+  padding: 0 16px 40px;
 }
 
-.subtitle {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
+.hero {
+  padding: 28px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
+
+.heroTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.heroDecor {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.decorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.3;
+}
+
+.decorDot:first-child { opacity: 0.6; }
+.decorDot:nth-child(2) { opacity: 0.4; }
 
 .grid {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 320px 1fr;
   gap: 16px;
   align-items: start;
 }
@@ -28,21 +53,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  position: sticky;
-  top: 60px;
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 2px;
+  gap: 10px;
 }
 
 .content {
@@ -60,5 +71,9 @@
     position: static;
     max-height: none;
     overflow-y: visible;
+  }
+
+  .hero {
+    padding: 20px 0 16px;
   }
 }

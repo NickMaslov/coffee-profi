@@ -8,6 +8,7 @@
   "menuItems": "Menú",
   "menuItemsDesc": "Precio, costo y ventas por producto",
   "unitsPerDayShort": "uds/día",
+  "avgPrice": "precio medio",
   "productCoffee": "Café",
   "productTea": "Té",
   "productDessert": "Postre",

@@ -8,6 +8,7 @@
   "menuItems": "Menu Items",
   "menuItemsDesc": "Price, cost & units sold per product",
   "unitsPerDayShort": "units/day",
+  "avgPrice": "avg price",
   "productCoffee": "Coffee",
   "productTea": "Tea",
   "productDessert": "Dessert",

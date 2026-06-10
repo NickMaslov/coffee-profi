@@ -3,7 +3,7 @@ import { useAppState } from '../store/AppContext'
 import { Accordion } from './Accordion'
 import { ProductCard } from './ProductCard'
 import { IconPlus } from './icons'
-import { calcTotalUnitsPerDay } from '../utils/calculations'
+import { calcTotalUnitsPerDay, calcBlendedRevenue } from '../utils/calculations'
 import styles from './MenuPanel.module.css'
 
 export function MenuPanel() {
@@ -11,10 +11,14 @@ export function MenuPanel() {
   const { state, dispatch } = useAppState()
   const totalUnits = calcTotalUnitsPerDay(state.products)
 
+  const blendedPrice = calcBlendedRevenue(state.products)
+  const collapsedDesc = `${totalUnits} ${t('unitsPerDayShort')} · $${blendedPrice.toFixed(2)} ${t('avgPrice')}`
+
   return (
     <Accordion
       title={t('menuItems')}
       desc={`${t('menuItemsDesc')} · ${totalUnits} ${t('unitsPerDayShort')}`}
+      collapsedDesc={collapsedDesc}
       defaultOpen
     >
       <div>

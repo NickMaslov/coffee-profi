@@ -1,15 +1,26 @@
-import { useState, type ReactNode } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import styles from './Accordion.module.css'
 
 interface Props {
   title: string
   desc?: string
+  collapsedDesc?: string
   defaultOpen?: boolean
   children: ReactNode
 }
 
-export function Accordion({ title, desc, defaultOpen = true, children }: Props) {
+export function Accordion({ title, desc, collapsedDesc, defaultOpen = true, children }: Props) {
   const [open, setOpen] = useState(defaultOpen)
+  const [showCollapsed, setShowCollapsed] = useState(!defaultOpen)
+
+  useEffect(() => {
+    if (open) {
+      setShowCollapsed(false)
+    } else {
+      const timer = setTimeout(() => setShowCollapsed(true), 500)
+      return () => clearTimeout(timer)
+    }
+  }, [open])
 
   return (
     <div className={`${styles.wrap} ${open ? styles.open : ''}`}>
@@ -29,6 +40,7 @@ export function Accordion({ title, desc, defaultOpen = true, children }: Props) 
         </svg>
       </button>
       {desc && open && <p className={styles.desc}>{desc}</p>}
+      {collapsedDesc && showCollapsed && <p className={styles.collapsedDesc}>{collapsedDesc}</p>}
       <div className={styles.body}>
         <div className={styles.bodyInner}>
           {children}

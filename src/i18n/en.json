@@ -84,5 +84,14 @@
   "wizardMenuDesc": "Set your products, prices, and daily sales targets.",
   "wizardResultTitle": "Your break-even point",
   "wizardResultDesc": "Based on your inputs, here's how many units you need to sell per day.",
-  "wizardResultHint": "You can adjust all values at any time from the dashboard."
+  "wizardResultHint": "You can adjust all values at any time from the dashboard.",
+  "forecastTitle": "Revenue Forecast",
+  "forecastProfitableFrom": "Profitable from month {{month}}",
+  "forecastNeverProfitable": "Not profitable within this period",
+  "forecastGrowthRate": "Monthly growth",
+  "forecastPerMonth": "/mo",
+  "forecastMonthsLabel": "mo",
+  "forecastNetProfit": "Net profit",
+  "forecastMonth": "Month",
+  "forecastUnitsDay": "units/day"
 }

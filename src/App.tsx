@@ -10,6 +10,7 @@ import { BreakEvenChart } from './components/BreakEvenChart'
 import { SummaryCard } from './components/SummaryCard'
 import { ThemeToggle } from './components/ThemeToggle'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
+import { ForecastChart } from './components/ForecastChart'
 import { OnboardingWizard } from './components/OnboardingWizard'
 import { IconCoffee } from './components/icons'
 import topBarStyles from './components/TopBar.module.css'
@@ -64,6 +65,7 @@ function AppInner() {
             <BreakEvenResult />
             <ProfitLossCard />
             <BreakEvenChart />
+            <ForecastChart />
             <SummaryCard />
           </section>
         </div>

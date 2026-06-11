@@ -84,5 +84,14 @@
   "wizardMenuDesc": "Укажите продукты, цены и ежедневные объёмы продаж.",
   "wizardResultTitle": "Ваша точка безубыточности",
   "wizardResultDesc": "Исходя из введённых данных — столько позиций нужно продавать в день.",
-  "wizardResultHint": "Вы можете изменить все значения в любое время на панели управления."
+  "wizardResultHint": "Вы можете изменить все значения в любое время на панели управления.",
+  "forecastTitle": "Прогноз выручки",
+  "forecastProfitableFrom": "Прибыльность с месяца {{month}}",
+  "forecastNeverProfitable": "Нет прибыли в этом периоде",
+  "forecastGrowthRate": "Рост в месяц",
+  "forecastPerMonth": "/мес",
+  "forecastMonthsLabel": "мес",
+  "forecastNetProfit": "Чистая прибыль",
+  "forecastMonth": "Месяц",
+  "forecastUnitsDay": "поз./день"
 }

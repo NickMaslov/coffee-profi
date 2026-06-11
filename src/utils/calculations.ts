@@ -1,4 +1,4 @@
-import type { FixedCosts, Product, BreakEvenResult, ChartDataPoint, PnLResult } from '../types'
+import type { FixedCosts, Product, BreakEvenResult, ChartDataPoint, PnLResult, ForecastDataPoint } from '../types'
 
 export function calcDailyFixedCosts(fixed: FixedCosts): number {
   return (fixed.rent + fixed.salaries + fixed.utilities + fixed.equipmentAmortization + fixed.marketing) / 30
@@ -66,6 +66,38 @@ export function calcPnL(fixed: FixedCosts, products: Product[]): PnLResult {
       monthlyVariableCost: p.variableCostPerUnit * p.unitsPerDay * 30,
     })),
   }
+}
+
+export function calcForecast(
+  fixed: FixedCosts,
+  products: Product[],
+  monthlyGrowthPct: number,
+  months: number
+): ForecastDataPoint[] {
+  const baseUnits = calcTotalUnitsPerDay(products)
+  const blendedRevPerUnit = calcBlendedRevenue(products)
+  const blendedVarCostPerUnit = calcBlendedVariableCost(products)
+  const monthlyFixed = Object.values(fixed).reduce((a, b) => a + b, 0)
+  const growthFactor = 1 + monthlyGrowthPct / 100
+
+  const points: ForecastDataPoint[] = []
+  let cumulative = 0
+
+  for (let m = 1; m <= months; m++) {
+    const unitsPerDay = baseUnits * Math.pow(growthFactor, m - 1)
+    const monthlyRevenue = unitsPerDay * blendedRevPerUnit * 30
+    const monthlyVarCosts = unitsPerDay * blendedVarCostPerUnit * 30
+    const netProfit = monthlyRevenue - monthlyVarCosts - monthlyFixed
+    cumulative += netProfit
+    points.push({
+      month: m,
+      unitsPerDay: Math.round(unitsPerDay),
+      netProfit: Math.round(netProfit),
+      cumulative: Math.round(cumulative),
+    })
+  }
+
+  return points
 }
 
 export function calcChartData(fixed: FixedCosts, products: Product[]): ChartDataPoint[] {

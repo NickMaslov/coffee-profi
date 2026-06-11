@@ -48,6 +48,13 @@ export interface ChartDataPoint {
   fixedCosts: number
 }
 
+export interface ForecastDataPoint {
+  month: number
+  unitsPerDay: number
+  netProfit: number
+  cumulative: number
+}
+
 export interface PnLProductRow {
   id: string
   name: string

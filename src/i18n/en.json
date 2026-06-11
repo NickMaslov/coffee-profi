@@ -56,5 +56,13 @@
   "scenarioPessimistic": "Pessimistic",
   "scenarioBase": "Base",
   "scenarioOptimistic": "Optimistic",
-  "scenarioVsBase": "vs base"
+  "scenarioVsBase": "vs base",
+  "scenariosTitle": "Saved Scenarios",
+  "scenariosDesc": "Save and restore different configurations",
+  "scenariosSaved": "saved",
+  "scenarioSave": "Save",
+  "scenarioLoad": "Load",
+  "scenarioDefaultName": "Scenario",
+  "scenariosEmpty": "No saved scenarios yet",
+  "scenarioBreakEven": "Break-even"
 }

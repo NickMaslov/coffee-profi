@@ -56,5 +56,13 @@
   "scenarioPessimistic": "Пессимист.",
   "scenarioBase": "Базовый",
   "scenarioOptimistic": "Оптимист.",
-  "scenarioVsBase": "к базе"
+  "scenarioVsBase": "к базе",
+  "scenariosTitle": "Сохранённые сценарии",
+  "scenariosDesc": "Сохраняйте и восстанавливайте конфигурации",
+  "scenariosSaved": "сохранено",
+  "scenarioSave": "Сохранить",
+  "scenarioLoad": "Загрузить",
+  "scenarioDefaultName": "Сценарий",
+  "scenariosEmpty": "Нет сохранённых сценариев",
+  "scenarioBreakEven": "Безубыточность"
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react'
 import i18n from '../i18n'
-import type { AppState, Product, ProductIcon } from '../types'
+import type { AppState, Product, ProductIcon, SavedScenario } from '../types'
 
 const defaultProducts: Product[] = [
   { id: 'coffee',  name: 'Coffee',  iconKey: 'coffee',   pricePerUnit: 6.00, variableCostPerUnit: 1.25, unitsPerDay: 60 },
@@ -19,6 +19,14 @@ function makeProduct(): Product {
   }
 }
 
+function loadScenarios(): SavedScenario[] {
+  try {
+    return JSON.parse(localStorage.getItem('savedScenarios') ?? '[]')
+  } catch {
+    return []
+  }
+}
+
 const defaultState: AppState = {
   fixedCosts: {
     rent: 5000,
@@ -30,6 +38,7 @@ const defaultState: AppState = {
   products: defaultProducts,
   theme: (localStorage.getItem('theme') as 'light' | 'dark') ?? 'light',
   language: (localStorage.getItem('language') as 'en' | 'ru' | 'es') ?? 'en',
+  savedScenarios: loadScenarios(),
 }
 
 type Action =
@@ -41,6 +50,9 @@ type Action =
   | { type: 'REMOVE_PRODUCT'; id: string }
   | { type: 'SET_THEME'; value: 'light' | 'dark' }
   | { type: 'SET_LANGUAGE'; value: 'en' | 'ru' | 'es' }
+  | { type: 'SAVE_SCENARIO'; name: string }
+  | { type: 'LOAD_SCENARIO'; id: string }
+  | { type: 'DELETE_SCENARIO'; id: string }
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -75,6 +87,23 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, theme: action.value }
     case 'SET_LANGUAGE':
       return { ...state, language: action.value }
+    case 'SAVE_SCENARIO': {
+      const scenario: SavedScenario = {
+        id: `scenario_${Date.now()}`,
+        name: action.name.trim() || `Scenario ${state.savedScenarios.length + 1}`,
+        createdAt: Date.now(),
+        fixedCosts: { ...state.fixedCosts },
+        products: state.products.map(p => ({ ...p })),
+      }
+      return { ...state, savedScenarios: [...state.savedScenarios, scenario] }
+    }
+    case 'LOAD_SCENARIO': {
+      const scenario = state.savedScenarios.find(s => s.id === action.id)
+      if (!scenario) return state
+      return { ...state, fixedCosts: { ...scenario.fixedCosts }, products: scenario.products.map(p => ({ ...p })) }
+    }
+    case 'DELETE_SCENARIO':
+      return { ...state, savedScenarios: state.savedScenarios.filter(s => s.id !== action.id) }
   }
 }
 
@@ -97,6 +126,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('language', state.language)
     i18n.changeLanguage(state.language)
   }, [state.language])
+
+  useEffect(() => {
+    localStorage.setItem('savedScenarios', JSON.stringify(state.savedScenarios))
+  }, [state.savedScenarios])
 
   return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
 }

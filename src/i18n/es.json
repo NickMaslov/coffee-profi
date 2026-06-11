@@ -56,5 +56,13 @@
   "scenarioPessimistic": "Pesimista",
   "scenarioBase": "Base",
   "scenarioOptimistic": "Optimista",
-  "scenarioVsBase": "vs base"
+  "scenarioVsBase": "vs base",
+  "scenariosTitle": "Escenarios guardados",
+  "scenariosDesc": "Guarda y restaura diferentes configuraciones",
+  "scenariosSaved": "guardados",
+  "scenarioSave": "Guardar",
+  "scenarioLoad": "Cargar",
+  "scenarioDefaultName": "Escenario",
+  "scenariosEmpty": "No hay escenarios guardados",
+  "scenarioBreakEven": "Punto de equilibrio"
 }

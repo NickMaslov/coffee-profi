@@ -88,8 +88,21 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] i18n keys for EN / RU / ES
 
 ### Phase 3B — Save & export
-- [ ] Save and compare multiple named scenarios (e.g. "small kiosk" vs "full café")
-- [ ] Export to PDF / CSV
+
+#### Part 1 — Save & restore scenarios ✅ COMPLETE
+- [x] `SavedScenario` type in `types.ts`
+- [x] `savedScenarios: SavedScenario[]` in AppState + localStorage persistence
+- [x] Actions: `SAVE_SCENARIO` / `LOAD_SCENARIO` / `DELETE_SCENARIO` in AppContext
+- [x] `ScenariosPanel` accordion in sidebar (below Menu Items, collapsed by default)
+- [x] Name input with auto-placeholder ("Scenario N"), save on Enter or button click
+- [x] Each saved scenario shows: name, net profit chip, break-even units/day
+- [x] Load and Delete buttons per scenario
+- [x] Newest scenarios shown first
+- [x] i18n keys for EN / RU / ES
+
+#### Part 2 — Export (next)
+- [ ] Export P&L to CSV — via Blob, no library needed
+- [ ] Export to PDF — via window.print() + print CSS
 
 ### Phase 3C — Onboarding wizard
 - [ ] Step-by-step wizard for new users instead of showing all panels at once

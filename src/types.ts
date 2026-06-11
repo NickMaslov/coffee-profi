@@ -17,11 +17,20 @@ export interface Product {
   unitsPerDay: number
 }
 
+export interface SavedScenario {
+  id: string
+  name: string
+  createdAt: number
+  fixedCosts: FixedCosts
+  products: Product[]
+}
+
 export interface AppState {
   fixedCosts: FixedCosts
   products: Product[]
   theme: 'light' | 'dark'
   language: 'en' | 'ru' | 'es'
+  savedScenarios: SavedScenario[]
 }
 
 export interface BreakEvenResult {

@@ -3,6 +3,7 @@ import { AppProvider } from './store/AppContext'
 import { CostsPanel } from './components/CostsPanel'
 import { MenuPanel } from './components/MenuPanel'
 import { BreakEvenResult } from './components/BreakEvenResult'
+import { ProfitLossCard } from './components/ProfitLossCard'
 import { BreakEvenChart } from './components/BreakEvenChart'
 import { SummaryCard } from './components/SummaryCard'
 import { ThemeToggle } from './components/ThemeToggle'
@@ -48,6 +49,7 @@ function AppInner() {
 
           <section className={styles.content}>
             <BreakEvenResult />
+            <ProfitLossCard />
             <BreakEvenChart />
             <SummaryCard />
           </section>

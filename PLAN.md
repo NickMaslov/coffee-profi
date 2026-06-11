@@ -68,12 +68,31 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 
 ---
 
-## Phase 3 — Scenarios (future)
+## Phase 3 — P&L, Scenarios & Onboarding (in progress)
 
-- Save and compare multiple scenarios (e.g. "small kiosk" vs "full café")
-- Add/remove menu items dynamically
-- Export to PDF
-- Shareable URL with encoded state
+### Phase 3A — P&L Statement
+
+#### Part 1 — Static P&L card ✅ COMPLETE
+- [x] `PnLProductRow` and `PnLResult` types in `types.ts`
+- [x] `calcPnL()` pure function in `calculations.ts`
+- [x] `ProfitLossCard` component: Revenue breakdown, Variable Costs, Gross Profit (+ margin %), Fixed Costs, Net Profit/Loss
+- [x] Collapsible accordion header — net chip always visible, content hides/shows with animation
+- [x] i18n keys added for EN / RU / ES
+
+#### Part 2 — "What if" scenario slider (next)
+- [ ] Sales multiplier slider (50% → 200% of current units)
+- [ ] P&L recalculates in real time under the chosen scenario
+- [ ] Quick-select buttons: Pessimistic / Base / Optimistic
+
+### Phase 3B — Save & export
+- [ ] Save and compare multiple named scenarios (e.g. "small kiosk" vs "full café")
+- [ ] Export to PDF / CSV
+
+### Phase 3C — Onboarding wizard
+- [ ] Step-by-step wizard for new users instead of showing all panels at once
+
+### Phase 3D — Time-based forecast
+- [ ] Month-by-month chart showing when the business turns profitable as audience grows
 
 ---
 
@@ -129,6 +148,7 @@ coffee-profi/
         ├── RevenuePanel.tsx
         ├── BreakEvenChart.tsx / .module.css
         ├── BreakEvenResult.tsx / .module.css
+        ├── ProfitLossCard.tsx / .module.css  ← Phase 3A: P&L statement accordion
         ├── SummaryCard.tsx / .module.css
         ├── ThemeToggle.tsx
         ├── LanguageSwitcher.tsx

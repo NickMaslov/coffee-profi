@@ -45,5 +45,11 @@
   "perMonth": "/mes",
   "themeLight": "Claro",
   "themeDark": "Oscuro",
-  "language": "Idioma"
+  "language": "Idioma",
+  "pnlTitle": "P&L mensual",
+  "pnlVariableCosts": "Costos variables",
+  "pnlGrossProfit": "Ganancia bruta",
+  "pnlGrossMargin": "margen bruto",
+  "pnlNetMargin": "margen neto",
+  "pnlPerDay": "uds/día"
 }

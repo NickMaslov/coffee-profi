@@ -1,4 +1,4 @@
-import type { FixedCosts, Product, BreakEvenResult, ChartDataPoint } from '../types'
+import type { FixedCosts, Product, BreakEvenResult, ChartDataPoint, PnLResult } from '../types'
 
 export function calcDailyFixedCosts(fixed: FixedCosts): number {
   return (fixed.rent + fixed.salaries + fixed.utilities + fixed.equipmentAmortization + fixed.marketing) / 30
@@ -36,6 +36,35 @@ export function calcBreakEven(fixed: FixedCosts, products: Product[]): BreakEven
     dailyFixedCosts,
     blendedMarginPerUnit,
     blendedVariableCostPerUnit,
+  }
+}
+
+export function calcPnL(fixed: FixedCosts, products: Product[]): PnLResult {
+  const monthlyRevenue = products.reduce((s, p) => s + p.pricePerUnit * p.unitsPerDay * 30, 0)
+  const monthlyVariableCosts = products.reduce((s, p) => s + p.variableCostPerUnit * p.unitsPerDay * 30, 0)
+  const grossProfit = monthlyRevenue - monthlyVariableCosts
+  const grossMarginPct = monthlyRevenue > 0 ? (grossProfit / monthlyRevenue) * 100 : 0
+  const monthlyFixedCosts = Object.values(fixed).reduce((a, b) => a + b, 0)
+  const netProfit = grossProfit - monthlyFixedCosts
+  const netMarginPct = monthlyRevenue > 0 ? (netProfit / monthlyRevenue) * 100 : 0
+
+  return {
+    monthlyRevenue,
+    monthlyVariableCosts,
+    grossProfit,
+    grossMarginPct,
+    monthlyFixedCosts,
+    netProfit,
+    netMarginPct,
+    products: products.map(p => ({
+      id: p.id,
+      name: p.name,
+      unitsPerDay: p.unitsPerDay,
+      pricePerUnit: p.pricePerUnit,
+      variableCostPerUnit: p.variableCostPerUnit,
+      monthlyRevenue: p.pricePerUnit * p.unitsPerDay * 30,
+      monthlyVariableCost: p.variableCostPerUnit * p.unitsPerDay * 30,
+    })),
   }
 }
 

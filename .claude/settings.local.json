@@ -5,7 +5,16 @@
       "Skill(claude-api:*)",
       "Bash(npm create *)",
       "Bash(npm run *)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(npx tsc *)",
+      "Skill(run)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/coffee-profi/)",
+      "Bash(npx chromium-cli *)",
+      "Bash(npx playwright *)",
+      "Bash(node *)"
     ]
   }
 }

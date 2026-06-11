@@ -1,0 +1,249 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  gap: 8px;
+}
+
+.header:hover {
+  background: var(--bg-input);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accent {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+.body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+.open .body {
+  max-height: 9999px;
+  overflow: visible;
+}
+
+.bodyInner {
+  padding: 0 20px 20px;
+}
+
+.netChip {
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.chipGreen {
+  background: var(--profit-bg);
+  color: var(--profit);
+  border: 1px solid var(--profit);
+}
+
+.chipRed {
+  background: var(--loss-bg);
+  color: var(--loss);
+  border: 1px solid var(--loss);
+}
+
+/* Section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+/* Rows */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0;
+}
+
+.rowIndent {
+  padding-left: 12px;
+}
+
+.rowLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.rowName {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowDetail {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.rowValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 0;
+}
+
+/* Gross Profit subtotal */
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.subtotalLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.subtotalLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pctBadge {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.subtotalValue {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* Net row */
+.netRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.netProfit {
+  background: var(--profit-bg);
+  border: 1px solid var(--profit);
+}
+
+.netLoss {
+  background: var(--loss-bg);
+  border: 1px solid var(--loss);
+}
+
+.netLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.netProfit .netLabel { color: var(--profit); }
+.netLoss .netLabel   { color: var(--loss); }
+
+.netRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.netValue {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.netProfit .netValue { color: var(--profit); }
+.netLoss .netValue   { color: var(--loss); }
+
+.netPct {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Colors */
+.green { color: var(--profit) !important; }
+.red   { color: var(--loss) !important; }

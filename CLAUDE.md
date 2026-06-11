@@ -21,9 +21,10 @@ Single-page app, no backend. All calculations happen in the browser.
 Key files:
 - `src/store/` — state (React context or Zustand)
 - `src/components/` — UI components (sliders, inputs, chart)
-- `src/utils/calculations.ts` — pure math functions (break-even, P&L)
-- `src/types.ts` — shared TypeScript types
-- `src/i18n/` — translation files: `ru.json`, `en.json`
+- `src/components/ProfitLossCard.tsx` — P&L accordion: revenue/costs breakdown, gross profit, net profit
+- `src/utils/calculations.ts` — pure math functions (break-even, P&L via `calcPnL()`)
+- `src/types.ts` — shared TypeScript types (incl. `PnLResult`, `PnLProductRow`)
+- `src/i18n/` — translation files: `en.json`, `ru.json`, `es.json`
 - `src/styles/themes.css` — CSS custom properties for light/dark themes
 
 ## Core business logic

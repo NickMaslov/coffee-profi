@@ -38,3 +38,24 @@ export interface ChartDataPoint {
   totalCosts: number
   fixedCosts: number
 }
+
+export interface PnLProductRow {
+  id: string
+  name: string
+  unitsPerDay: number
+  pricePerUnit: number
+  variableCostPerUnit: number
+  monthlyRevenue: number
+  monthlyVariableCost: number
+}
+
+export interface PnLResult {
+  monthlyRevenue: number
+  monthlyVariableCosts: number
+  grossProfit: number
+  grossMarginPct: number
+  monthlyFixedCosts: number
+  netProfit: number
+  netMarginPct: number
+  products: PnLProductRow[]
+}

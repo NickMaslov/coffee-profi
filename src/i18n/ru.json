@@ -45,5 +45,11 @@
   "perMonth": "/мес",
   "themeLight": "Светлая",
   "themeDark": "Тёмная",
-  "language": "Язык"
+  "language": "Язык",
+  "pnlTitle": "P&L за месяц",
+  "pnlVariableCosts": "Переменные расходы",
+  "pnlGrossProfit": "Валовая прибыль",
+  "pnlGrossMargin": "валовая маржа",
+  "pnlNetMargin": "чистая маржа",
+  "pnlPerDay": "поз./день"
 }

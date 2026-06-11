@@ -58,7 +58,7 @@ export function BreakEvenChart() {
             <ReferenceArea x1={breakEven.unitsPerDay} x2={maxUnits} fill="url(#profitGrad)" />
           )}
 
-          <XAxis dataKey="units" tick={{ fontSize: 11, fill: colors.text }} tickLine={false} axisLine={{ stroke: colors.grid }} />
+          <XAxis dataKey="units" type="number" domain={[0, maxUnits]} tick={{ fontSize: 11, fill: colors.text }} tickLine={false} axisLine={{ stroke: colors.grid }} />
           <YAxis tickFormatter={fmtDollar} tick={{ fontSize: 11, fill: colors.text }} tickLine={false} axisLine={false} width={60} />
           <Tooltip
             formatter={(value: number, name: string) => [fmtDollar(value), name]}

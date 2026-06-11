@@ -67,5 +67,22 @@
   "scenarioBreakEven": "Punto de equilibrio",
   "scenarioDelete": "Eliminar escenario",
   "exportCsv": "Exportar CSV",
-  "exportPdf": "Imprimir / PDF"
+  "exportPdf": "Imprimir / PDF",
+  "wizardWelcomeTitle": "Bienvenido a Coffee Profi",
+  "wizardWelcomeSubtitle": "Descubramos cuántos artículos necesitas vender cada día para cubrir tus costos.",
+  "wizardStep1Label": "Ingresa tus costos fijos mensuales",
+  "wizardStep2Label": "Configura tu menú y ventas diarias",
+  "wizardStep3Label": "Ve tu punto de equilibrio personalizado",
+  "wizardGetStarted": "Comenzar",
+  "wizardSkip": "Omitir",
+  "wizardBack": "Atrás",
+  "wizardNext": "Siguiente",
+  "wizardFinish": "Abrir panel",
+  "wizardCostsTitle": "Costos fijos mensuales",
+  "wizardCostsDesc": "Estos gastos son los mismos independientemente de cuánto vendas.",
+  "wizardMenuTitle": "¿Qué vendes?",
+  "wizardMenuDesc": "Establece tus productos, precios y objetivos de ventas diarias.",
+  "wizardResultTitle": "Tu punto de equilibrio",
+  "wizardResultDesc": "Con base en tus datos, aquí está cuántas unidades necesitas vender por día.",
+  "wizardResultHint": "Puedes ajustar todos los valores en cualquier momento desde el panel."
 }

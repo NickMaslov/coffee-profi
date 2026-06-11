@@ -67,5 +67,22 @@
   "scenarioBreakEven": "Break-even",
   "scenarioDelete": "Delete scenario",
   "exportCsv": "Export CSV",
-  "exportPdf": "Print / PDF"
+  "exportPdf": "Print / PDF",
+  "wizardWelcomeTitle": "Welcome to Coffee Profi",
+  "wizardWelcomeSubtitle": "Let's figure out how many items you need to sell each day to cover your costs.",
+  "wizardStep1Label": "Enter your monthly fixed costs",
+  "wizardStep2Label": "Set up your menu and daily sales",
+  "wizardStep3Label": "See your personal break-even number",
+  "wizardGetStarted": "Get Started",
+  "wizardSkip": "Skip",
+  "wizardBack": "Back",
+  "wizardNext": "Next",
+  "wizardFinish": "Open Dashboard",
+  "wizardCostsTitle": "Monthly fixed costs",
+  "wizardCostsDesc": "These expenses stay the same regardless of how much you sell.",
+  "wizardMenuTitle": "What do you sell?",
+  "wizardMenuDesc": "Set your products, prices, and daily sales targets.",
+  "wizardResultTitle": "Your break-even point",
+  "wizardResultDesc": "Based on your inputs, here's how many units you need to sell per day.",
+  "wizardResultHint": "You can adjust all values at any time from the dashboard."
 }

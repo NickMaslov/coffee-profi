@@ -67,5 +67,22 @@
   "scenarioBreakEven": "Безубыточность",
   "scenarioDelete": "Удалить сценарий",
   "exportCsv": "Экспорт CSV",
-  "exportPdf": "Печать / PDF"
+  "exportPdf": "Печать / PDF",
+  "wizardWelcomeTitle": "Добро пожаловать в Coffee Profi",
+  "wizardWelcomeSubtitle": "Давайте выясним, сколько позиций нужно продавать каждый день, чтобы покрыть все расходы.",
+  "wizardStep1Label": "Введите ежемесячные постоянные расходы",
+  "wizardStep2Label": "Настройте меню и ежедневные продажи",
+  "wizardStep3Label": "Узнайте свою точку безубыточности",
+  "wizardGetStarted": "Начать",
+  "wizardSkip": "Пропустить",
+  "wizardBack": "Назад",
+  "wizardNext": "Далее",
+  "wizardFinish": "Открыть панель",
+  "wizardCostsTitle": "Постоянные расходы в месяц",
+  "wizardCostsDesc": "Эти расходы не зависят от объёма продаж.",
+  "wizardMenuTitle": "Что вы продаёте?",
+  "wizardMenuDesc": "Укажите продукты, цены и ежедневные объёмы продаж.",
+  "wizardResultTitle": "Ваша точка безубыточности",
+  "wizardResultDesc": "Исходя из введённых данных — столько позиций нужно продавать в день.",
+  "wizardResultHint": "Вы можете изменить все значения в любое время на панели управления."
 }

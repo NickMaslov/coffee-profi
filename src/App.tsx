@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AppProvider } from './store/AppContext'
 import { CostsPanel } from './components/CostsPanel'
@@ -9,12 +10,22 @@ import { BreakEvenChart } from './components/BreakEvenChart'
 import { SummaryCard } from './components/SummaryCard'
 import { ThemeToggle } from './components/ThemeToggle'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
+import { OnboardingWizard } from './components/OnboardingWizard'
 import { IconCoffee } from './components/icons'
 import topBarStyles from './components/TopBar.module.css'
 import styles from './App.module.css'
 
 function AppInner() {
   const { t } = useTranslation()
+  const [wizardStep, setWizardStep] = useState<number | null>(
+    () => localStorage.getItem('wizardDone') ? null : 0
+  )
+
+  function closeWizard() {
+    localStorage.setItem('wizardDone', 'true')
+    setWizardStep(null)
+  }
+
   return (
     <div className={styles.app}>
       <header className={topBarStyles.topbar}>
@@ -57,6 +68,15 @@ function AppInner() {
           </section>
         </div>
       </main>
+
+      {wizardStep !== null && (
+        <OnboardingWizard
+          step={wizardStep}
+          onNext={() => setWizardStep(s => (s ?? 0) + 1)}
+          onBack={() => setWizardStep(s => Math.max(1, (s ?? 1) - 1))}
+          onClose={closeWizard}
+        />
+      )}
     </div>
   )
 }

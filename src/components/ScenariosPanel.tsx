@@ -33,7 +33,7 @@ function ScenarioRow({ scenario, onLoad, onDelete }: {
       </div>
       <div className={styles.rowActions}>
         <button className={styles.loadBtn} onClick={onLoad}>{t('scenarioLoad')}</button>
-        <button className={styles.deleteBtn} onClick={onDelete} aria-label={t('deleteItem')}>×</button>
+        <button className={styles.deleteBtn} onClick={onDelete} aria-label={t('scenarioDelete')}>×</button>
       </div>
     </div>
   )

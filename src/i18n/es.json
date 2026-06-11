@@ -64,5 +64,8 @@
   "scenarioLoad": "Cargar",
   "scenarioDefaultName": "Escenario",
   "scenariosEmpty": "No hay escenarios guardados",
-  "scenarioBreakEven": "Punto de equilibrio"
+  "scenarioBreakEven": "Punto de equilibrio",
+  "scenarioDelete": "Eliminar escenario",
+  "exportCsv": "Exportar CSV",
+  "exportPdf": "Imprimir / PDF"
 }

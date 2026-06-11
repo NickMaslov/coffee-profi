@@ -100,9 +100,12 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] Newest scenarios shown first
 - [x] i18n keys for EN / RU / ES
 
-#### Part 2 — Export (next)
-- [ ] Export P&L to CSV — via Blob, no library needed
-- [ ] Export to PDF — via window.print() + print CSS
+#### Part 2 — Export ✅ COMPLETE
+- [x] Export P&L to CSV — via Blob, no library, includes revenue/costs/margins breakdown
+- [x] Print / PDF — via window.print() + @media print CSS
+- [x] Print CSS hides sidebar, chart, scenario controls — shows clean P&L report
+- [x] Export buttons in ProfitLossCard body (below Net Profit row)
+- [x] i18n keys for EN / RU / ES
 
 ### Phase 3C — Onboarding wizard
 - [ ] Step-by-step wizard for new users instead of showing all panels at once

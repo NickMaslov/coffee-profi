@@ -64,5 +64,8 @@
   "scenarioLoad": "Load",
   "scenarioDefaultName": "Scenario",
   "scenariosEmpty": "No saved scenarios yet",
-  "scenarioBreakEven": "Break-even"
+  "scenarioBreakEven": "Break-even",
+  "scenarioDelete": "Delete scenario",
+  "exportCsv": "Export CSV",
+  "exportPdf": "Print / PDF"
 }

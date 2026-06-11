@@ -64,5 +64,8 @@
   "scenarioLoad": "Загрузить",
   "scenarioDefaultName": "Сценарий",
   "scenariosEmpty": "Нет сохранённых сценариев",
-  "scenarioBreakEven": "Безубыточность"
+  "scenarioBreakEven": "Безубыточность",
+  "scenarioDelete": "Удалить сценарий",
+  "exportCsv": "Экспорт CSV",
+  "exportPdf": "Печать / PDF"
 }

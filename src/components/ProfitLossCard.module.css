@@ -391,6 +391,38 @@
   font-weight: 600;
 }
 
+/* Export */
+.exportRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.exportBtn {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.exportBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.exportBtnPdf:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+  background: var(--bg-card);
+}
+
 /* Colors */
 .green { color: var(--profit) !important; }
 .red   { color: var(--loss) !important; }

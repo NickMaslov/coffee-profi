@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
 import { calcPnL } from '../utils/calculations'
+import { exportCsv } from '../utils/export'
 import styles from './ProfitLossCard.module.css'
 
 const PRESETS = [
@@ -62,6 +63,16 @@ export function ProfitLossCard() {
     { key: 'equipmentAmortization', label: t('equipmentAmortization') },
     { key: 'marketing',            label: t('marketing') },
   ]
+
+  const fixedLabels = Object.fromEntries(fixedRows.map(r => [r.key, r.label])) as Record<keyof typeof state.fixedCosts, string>
+
+  function handleCsv() {
+    exportCsv(pnl, state.fixedCosts, fixedLabels)
+  }
+
+  function handlePdf() {
+    window.print()
+  }
 
   return (
     <div className={`${styles.card} ${open ? styles.open : ''}`}>
@@ -200,7 +211,7 @@ export function ProfitLossCard() {
 
           <div className={styles.divider} />
 
-          {/* Net Profit */}
+          {/* Net Profit / Loss */}
           <div className={`${styles.netRow} ${isProfit ? styles.netProfit : styles.netLoss}`}>
             <span className={styles.netLabel}>{isProfit ? t('monthlyProfit') : t('monthlyLoss')}</span>
             <div className={styles.netRight}>
@@ -212,6 +223,16 @@ export function ProfitLossCard() {
                 </span>
               )}
             </div>
+          </div>
+
+          {/* Export buttons */}
+          <div className={styles.exportRow}>
+            <button className={styles.exportBtn} onClick={handleCsv}>
+              ↓ {t('exportCsv')}
+            </button>
+            <button className={`${styles.exportBtn} ${styles.exportBtnPdf}`} onClick={handlePdf}>
+              ⎙ {t('exportPdf')}
+            </button>
           </div>
 
         </div>

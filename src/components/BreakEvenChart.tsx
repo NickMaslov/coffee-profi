@@ -89,7 +89,13 @@ export function BreakEvenChart() {
               x={currentUnits}
               stroke={currentUnits >= breakEven.unitsPerDay ? colors.profitZone : colors.lossZone}
               strokeWidth={2}
-              label={{ value: `▶ ${currentUnits}`, position: 'insideTopLeft', fontSize: 11, fontWeight: 700, fill: currentUnits >= breakEven.unitsPerDay ? colors.profitZone : colors.lossZone }}
+              label={{
+                value: `▶ ${currentUnits}`,
+                position: 'insideBottomLeft',
+                fontSize: 11,
+                fontWeight: 700,
+                fill: currentUnits >= breakEven.unitsPerDay ? colors.profitZone : colors.lossZone,
+              }}
             />
           )}
 

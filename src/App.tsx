@@ -12,7 +12,7 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
 import { ForecastChart } from './components/ForecastChart'
 import { OnboardingWizard } from './components/OnboardingWizard'
-import { IconCoffee } from './components/icons'
+import { IconCoffee, IconWand } from './components/icons'
 import topBarStyles from './components/TopBar.module.css'
 import styles from './App.module.css'
 
@@ -38,22 +38,21 @@ function AppInner() {
             Coffee <span>Profi</span>
           </span>
         </div>
+        <span className={topBarStyles.subtitle}>{t('appSubtitle')}</span>
         <div className={topBarStyles.controls}>
+          <button
+            className={topBarStyles.iconBtn}
+            onClick={() => setWizardStep(0)}
+            title={t('wizardGetStarted')}
+          >
+            <IconWand size={16} />
+          </button>
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
       </header>
 
       <main className={styles.main}>
-        <div className={styles.hero}>
-          <h1 className={styles.heroTitle}>{t('appSubtitle')}</h1>
-          <div className={styles.heroDecor}>
-            <span className={styles.decorDot} />
-            <span className={styles.decorDot} />
-            <span className={styles.decorDot} />
-          </div>
-        </div>
-
         <div className={styles.grid}>
           <aside className={styles.sidebar}>
             <CostsPanel />

@@ -327,6 +327,89 @@ delta = scenarioNetProfit − baseNetProfit
 
 ---
 
+## Блок 7 — Прогноз прибыли (Profit Forecast)
+
+Прогноз моделирует рост бизнеса по месяцам при заданном **ежемесячном темпе роста продаж**. Постоянные расходы остаются неизменными — растут только объёмы.
+
+### Темп роста (compound growth)
+
+```
+growthFactor = 1 + monthlyGrowthPct / 100
+```
+
+### Объём продаж в месяц M
+
+```
+unitsPerDay(M) = baseUnits × growthFactor^(M−1)
+```
+
+Месяц 1 — базовый (без роста). Каждый следующий умножается на `growthFactor`.
+
+**Пример** (baseUnits = 100, рост +10%/мес):
+```
+Месяц 1: 100 × 1.10^0 = 100 units/day
+Месяц 2: 100 × 1.10^1 = 110 units/day
+Месяц 3: 100 × 1.10^2 = 121 units/day
+Месяц 6: 100 × 1.10^5 = 161 units/day
+```
+
+### Чистая прибыль в месяц M
+
+```
+monthlyRevenue(M)  = unitsPerDay(M) × blendedRevenue × 30
+monthlyVarCosts(M) = unitsPerDay(M) × blendedVariableCost × 30
+netProfit(M)       = monthlyRevenue(M) − monthlyVarCosts(M) − monthlyFixedCosts
+```
+
+### Накопленная прибыль (Cumulative)
+
+```
+cumulative(M) = cumulative(M−1) + netProfit(M)
+```
+
+Показывает, когда бизнес полностью покроет накопленные убытки и выйдет в суммарный плюс.
+
+### Когда наступает прибыльность
+
+- **Операционная:** первый месяц, когда `netProfit(M) > 0`
+- **Накопленная:** первый месяц, когда `cumulative(M) > 0`
+
+### Граничный случай
+
+Если рост не выводит в прибыль за весь горизонт — показывается "Not profitable within this period".
+
+---
+
+## Блок 8 — Сохранённые сценарии (Saved Scenarios)
+
+Сценарии — это **снимок состояния** в момент сохранения. Хранятся в `localStorage`.
+
+### Структура
+
+```
+SavedScenario {
+  id:         string      // crypto.randomUUID()
+  name:       string      // пользовательское название
+  createdAt:  number      // Date.now() — Unix timestamp (мс)
+  fixedCosts: FixedCosts  // копия постоянных расходов
+  products:   Product[]   // копия массива продуктов
+}
+```
+
+### Операции
+
+| Операция | Действие |
+|---|---|
+| **Save** | Создаёт новый сценарий из текущих `fixedCosts` + `products` |
+| **Load** | Заменяет текущие `fixedCosts` и `products` данными сценария |
+| **Delete** | Удаляет сценарий по `id` |
+
+### Что НЕ сохраняется
+
+`theme` и `language` — пользовательские настройки интерфейса, не бизнес-данные.
+
+---
+
 ## Сводная таблица всех формул
 
 | Формула | Назначение |
@@ -342,4 +425,6 @@ delta = scenarioNetProfit − baseNetProfit
 | `totalRevenue − totalVarCosts` | Валовая прибыль |
 | `grossProfit − fixedCosts` | **Чистая прибыль/убыток** |
 | `(netProfit / revenue) × 100` | Чистая маржа % |
-| `units(i) × multiplier` | Сценарный объём продаж |
+| `units(i) × multiplier` | Сценарный объём продаж (What-if) |
+| `baseUnits × growthFactor^(M−1)` | Продажи в месяц M (прогноз) |
+| `Σ netProfit(1..M)` | Накопленная прибыль к месяцу M |

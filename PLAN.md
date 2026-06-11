@@ -107,11 +107,11 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] Export buttons in ProfitLossCard body (below Net Profit row)
 - [x] i18n keys for EN / RU / ES
 
-### Phase 3C — Onboarding wizard
-- [ ] Step-by-step wizard for new users instead of showing all panels at once
+### Phase 3C — Onboarding wizard ✅ COMPLETE
+- [x] Step-by-step wizard for new users instead of showing all panels at once
 
-### Phase 3D — Time-based forecast
-- [ ] Month-by-month chart showing when the business turns profitable as audience grows
+### Phase 3D — Time-based forecast ✅ COMPLETE
+- [x] Month-by-month chart showing when the business turns profitable as audience grows
 
 ---
 

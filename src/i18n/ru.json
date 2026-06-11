@@ -51,5 +51,10 @@
   "pnlGrossProfit": "Валовая прибыль",
   "pnlGrossMargin": "валовая маржа",
   "pnlNetMargin": "чистая маржа",
-  "pnlPerDay": "поз./день"
+  "pnlPerDay": "поз./день",
+  "scenarioTitle": "Сценарий продаж",
+  "scenarioPessimistic": "Пессимист.",
+  "scenarioBase": "Базовый",
+  "scenarioOptimistic": "Оптимист.",
+  "scenarioVsBase": "к базе"
 }

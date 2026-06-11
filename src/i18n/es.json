@@ -51,5 +51,10 @@
   "pnlGrossProfit": "Ganancia bruta",
   "pnlGrossMargin": "margen bruto",
   "pnlNetMargin": "margen neto",
-  "pnlPerDay": "uds/día"
+  "pnlPerDay": "uds/día",
+  "scenarioTitle": "Escenario de ventas",
+  "scenarioPessimistic": "Pesimista",
+  "scenarioBase": "Base",
+  "scenarioOptimistic": "Optimista",
+  "scenarioVsBase": "vs base"
 }

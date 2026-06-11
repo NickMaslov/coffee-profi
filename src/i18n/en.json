@@ -51,5 +51,10 @@
   "pnlGrossProfit": "Gross Profit",
   "pnlGrossMargin": "gross margin",
   "pnlNetMargin": "net margin",
-  "pnlPerDay": "units/day"
+  "pnlPerDay": "units/day",
+  "scenarioTitle": "Sales Scenario",
+  "scenarioPessimistic": "Pessimistic",
+  "scenarioBase": "Base",
+  "scenarioOptimistic": "Optimistic",
+  "scenarioVsBase": "vs base"
 }

@@ -244,6 +244,153 @@
   color: var(--text-muted);
 }
 
+/* Scenario block */
+.scenarioBlock {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.scenarioTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scenarioLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.scenarioPct {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.scenarioPctActive {
+  color: var(--accent);
+}
+
+.presets {
+  display: flex;
+  gap: 6px;
+}
+
+.presetBtn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.presetBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.presetActive {
+  border-color: var(--accent) !important;
+  background: var(--accent-light) !important;
+  color: var(--accent) !important;
+}
+
+/* Slider */
+.sliderTrack {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sliderBg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sliderFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.05s;
+}
+
+.sliderInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  height: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  z-index: 1;
+}
+
+.sliderThumb {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--bg-card);
+  border: 2.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
+  z-index: 0;
+}
+
+.sliderTrack:hover .sliderThumb {
+  box-shadow: 0 0 0 5px var(--accent-light);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: -4px;
+}
+
+/* Scenario badge in header */
+.scenarioBadge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* Net delta */
+.netDelta {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 /* Colors */
 .green { color: var(--profit) !important; }
 .red   { color: var(--loss) !important; }

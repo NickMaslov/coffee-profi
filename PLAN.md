@@ -79,10 +79,13 @@ Target user: an entrepreneur planning to open a coffee shop. No finance degree r
 - [x] Collapsible accordion header — net chip always visible, content hides/shows with animation
 - [x] i18n keys added for EN / RU / ES
 
-#### Part 2 — "What if" scenario slider (next)
-- [ ] Sales multiplier slider (50% → 200% of current units)
-- [ ] P&L recalculates in real time under the chosen scenario
-- [ ] Quick-select buttons: Pessimistic / Base / Optimistic
+#### Part 2 — "What if" scenario slider ✅ COMPLETE
+- [x] Sales multiplier slider (50% → 200% of current units)
+- [x] P&L recalculates in real time under the chosen scenario
+- [x] Quick-select buttons: Pessimistic (70%) / Base (100%) / Optimistic (150%)
+- [x] Delta vs base shown in net profit row when not at 100%
+- [x] Scenario % badge in accordion header when not at base
+- [x] i18n keys for EN / RU / ES
 
 ### Phase 3B — Save & export
 - [ ] Save and compare multiple named scenarios (e.g. "small kiosk" vs "full café")

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
 import { InputSlider } from './InputSlider'
@@ -18,6 +19,42 @@ interface Props {
 export function OnboardingWizard({ step, onNext, onBack, onClose }: Props) {
   const { t } = useTranslation()
   const { state, dispatch } = useAppState()
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    modalRef.current?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      // Trap Tab inside the modal so background controls stay unreachable
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusables = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, input, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusables.length === 0) return
+        const first = focusables[0]
+        const last = focusables[focusables.length - 1]
+        const active = document.activeElement
+
+        if (!modalRef.current.contains(active)) {
+          e.preventDefault()
+          first.focus()
+        } else if (e.shiftKey && active === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
 
   const result = calcBreakEven(state.fixedCosts, state.products)
   const currentUnits = calcTotalUnitsPerDay(state.products)
@@ -28,7 +65,7 @@ export function OnboardingWizard({ step, onNext, onBack, onClose }: Props) {
       className={styles.overlay}
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
     >
-      <div className={styles.modal} role="dialog" aria-modal="true">
+      <div className={styles.modal} role="dialog" aria-modal="true" ref={modalRef} tabIndex={-1}>
 
         {/* Header: progress dots + skip */}
         {step > 0 && (

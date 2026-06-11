@@ -85,7 +85,7 @@
   "wizardResultTitle": "Tu punto de equilibrio",
   "wizardResultDesc": "Con base en tus datos, aquí está cuántas unidades necesitas vender por día.",
   "wizardResultHint": "Puedes ajustar todos los valores en cualquier momento desde el panel.",
-  "forecastTitle": "Pronóstico de ingresos",
+  "forecastTitle": "Pronóstico de ganancias",
   "forecastProfitableFrom": "Rentable a partir del mes {{month}}",
   "forecastNeverProfitable": "Sin rentabilidad en este período",
   "forecastGrowthRate": "Crecimiento mensual",

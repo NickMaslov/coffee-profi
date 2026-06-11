@@ -10,7 +10,7 @@ const defaultProducts: Product[] = [
 
 function makeProduct(): Product {
   return {
-    id: `product_${Date.now()}`,
+    id: `product_${crypto.randomUUID()}`,
     name: 'New item',
     iconKey: 'star',
     pricePerUnit: 5.00,
@@ -89,7 +89,7 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, language: action.value }
     case 'SAVE_SCENARIO': {
       const scenario: SavedScenario = {
-        id: `scenario_${Date.now()}`,
+        id: `scenario_${crypto.randomUUID()}`,
         name: action.name.trim() || `Scenario ${state.savedScenarios.length + 1}`,
         createdAt: Date.now(),
         fixedCosts: { ...state.fixedCosts },

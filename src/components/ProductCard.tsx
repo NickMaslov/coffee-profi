@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAppState } from '../store/AppContext'
 import { InputSlider } from './InputSlider'
-import { IconCoffee, IconDroplet, IconStar, IconBeer, IconSandwich, IconTrash } from './icons'
+import { IconCoffee, IconDroplet, IconCake, IconStar, IconBeer, IconSandwich, IconTrash } from './icons'
 import type { Product, ProductIcon } from '../types'
 import styles from './ProductCard.module.css'
 
 const ICON_OPTIONS: { key: ProductIcon; el: JSX.Element }[] = [
   { key: 'coffee',   el: <IconCoffee size={14} /> },
   { key: 'tea',      el: <IconDroplet size={14} /> },
-  { key: 'dessert',  el: <IconStar size={14} /> },
+  { key: 'dessert',  el: <IconCake size={14} /> },
   { key: 'beer',     el: <IconBeer size={14} /> },
   { key: 'sandwich', el: <IconSandwich size={14} /> },
   { key: 'star',     el: <IconStar size={14} /> },
@@ -18,7 +18,7 @@ const ICON_OPTIONS: { key: ProductIcon; el: JSX.Element }[] = [
 const ICON_MAP: Record<ProductIcon, JSX.Element> = {
   coffee:   <IconCoffee size={16} />,
   tea:      <IconDroplet size={16} />,
-  dessert:  <IconStar size={16} />,
+  dessert:  <IconCake size={16} />,
   beer:     <IconBeer size={16} />,
   sandwich: <IconSandwich size={16} />,
   star:     <IconStar size={16} />,

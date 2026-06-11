@@ -2,6 +2,13 @@
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Set theme before first paint so CSS vars are correct when React renders
+      document.documentElement.setAttribute(
+        'data-theme',
+        localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
+      )
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee Profi</title>
   </head>

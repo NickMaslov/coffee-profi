@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react'
 import i18n from '../i18n'
-import type { AppState, Product, ProductIcon, SavedScenario } from '../types'
+import type { AppState, Product, ProductIcon, SavedScenario, FixedCostItem } from '../types'
 
 const defaultProducts: Product[] = [
   { id: 'coffee',  name: 'Coffee',  iconKey: 'coffee',   pricePerUnit: 6.00, variableCostPerUnit: 1.25, unitsPerDay: 60 },
@@ -19,9 +19,25 @@ function makeProduct(): Product {
   }
 }
 
+// Migrate a legacy fixedCosts object ({ rent, salaries, ... }) to the new
+// FixedCostItem[] format. Returns the value unchanged if it's already an array.
+function migrateFixedCosts(fixed: unknown): FixedCostItem[] {
+  if (Array.isArray(fixed)) return fixed as FixedCostItem[]
+  if (fixed && typeof fixed === 'object') {
+    return Object.entries(fixed as Record<string, number>).map(([id, value]) => ({
+      id,
+      name: id.charAt(0).toUpperCase() + id.slice(1),
+      value: Number(value) || 0,
+    }))
+  }
+  return []
+}
+
 function loadScenarios(): SavedScenario[] {
   try {
-    return JSON.parse(localStorage.getItem('savedScenarios') ?? '[]')
+    const raw = JSON.parse(localStorage.getItem('savedScenarios') ?? '[]')
+    if (!Array.isArray(raw)) return []
+    return raw.map((s: SavedScenario) => ({ ...s, fixedCosts: migrateFixedCosts(s.fixedCosts) }))
   } catch {
     return []
   }

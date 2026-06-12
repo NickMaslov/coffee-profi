@@ -15,6 +15,8 @@ Enter your costs and menu — Coffee Profi tells you exactly how many items you 
 | **Break-even calculator** | Exact units/day and units/month to cover all costs |
 | **Monthly P&L** | Per-product revenue, variable costs, gross profit, net profit/loss |
 | **Multi-product menu** | Add coffee, tea, desserts and more — blended break-even across all items |
+| **Dynamic fixed costs** | Add, rename, and delete expense lines — not limited to the defaults |
+| **Customizable branding** | Click the title, subtitle, or logo to rename and re-theme for any similar business |
 | **Sales scenario analysis** | Pessimistic / Base / Optimistic multipliers with delta vs base |
 | **Profit forecast** | Month-by-month compound growth projection with cumulative P&L |
 | **Saved scenarios** | Save, load, and delete named configurations |

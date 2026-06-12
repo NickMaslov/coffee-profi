@@ -1,10 +1,10 @@
-export interface FixedCosts {
-  rent: number
-  salaries: number
-  utilities: number
-  equipmentAmortization: number
-  marketing: number
+export interface FixedCostItem {
+  id: string
+  name: string
+  value: number
 }
+
+export type FixedCosts = FixedCostItem[]
 
 export type ProductIcon = 'coffee' | 'tea' | 'dessert' | 'beer' | 'sandwich' | 'star'
 

@@ -20,7 +20,7 @@ export function SummaryCard() {
   const totalUnits = calcTotalUnitsPerDay(products)
   const blendedRevPerUnit = calcBlendedRevenue(products)
   const blendedVarPerUnit = calcBlendedVariableCost(products)
-  const monthlyFixed = Object.values(fixedCosts).reduce((a, b) => a + b, 0)
+  const monthlyFixed = fixedCosts.reduce((s, i) => s + i.value, 0)
   const monthlyRevenue = totalUnits * blendedRevPerUnit * 30
   const monthlyVariable = totalUnits * blendedVarPerUnit * 30
   const monthlyCosts = monthlyFixed + monthlyVariable

@@ -4,9 +4,7 @@ import { useAppState } from '../store/AppContext'
 import { InputSlider } from './InputSlider'
 import { ProductCard } from './ProductCard'
 import { calcBreakEven, calcTotalUnitsPerDay } from '../utils/calculations'
-import {
-  IconCoffee, IconBuilding, IconUsers, IconZap, IconTool, IconMegaphone, IconTrendingUp,
-} from './icons'
+import { IconCoffee, IconTrendingUp } from './icons'
 import styles from './OnboardingWizard.module.css'
 
 interface Props {
@@ -123,11 +121,19 @@ export function OnboardingWizard({ step, onNext, onBack, onClose }: Props) {
                 <p className={styles.stepDesc}>{t('wizardCostsDesc')}</p>
               </div>
               <div className={styles.sliders}>
-                <InputSlider icon={<IconBuilding />} label={t('rent')} value={state.fixedCosts.rent} min={500} max={20000} step={100} prefix="$" suffix={t('perMonth')} onChange={v => dispatch({ type: 'SET_FIXED', key: 'rent', value: v })} />
-                <InputSlider icon={<IconUsers />} label={t('salaries')} value={state.fixedCosts.salaries} min={1000} max={30000} step={100} prefix="$" suffix={t('perMonth')} onChange={v => dispatch({ type: 'SET_FIXED', key: 'salaries', value: v })} />
-                <InputSlider icon={<IconZap />} label={t('utilities')} value={state.fixedCosts.utilities} min={100} max={5000} step={50} prefix="$" suffix={t('perMonth')} onChange={v => dispatch({ type: 'SET_FIXED', key: 'utilities', value: v })} />
-                <InputSlider icon={<IconTool />} label={t('equipmentAmortization')} value={state.fixedCosts.equipmentAmortization} min={50} max={5000} step={50} prefix="$" suffix={t('perMonth')} onChange={v => dispatch({ type: 'SET_FIXED', key: 'equipmentAmortization', value: v })} />
-                <InputSlider icon={<IconMegaphone />} label={t('marketing')} value={state.fixedCosts.marketing} min={0} max={5000} step={50} prefix="$" suffix={t('perMonth')} onChange={v => dispatch({ type: 'SET_FIXED', key: 'marketing', value: v })} />
+                {state.fixedCosts.map(item => (
+                  <InputSlider
+                    key={item.id}
+                    label={item.name}
+                    value={item.value}
+                    min={0}
+                    max={30000}
+                    step={50}
+                    prefix="$"
+                    suffix={t('perMonth')}
+                    onChange={v => dispatch({ type: 'SET_FIXED', id: item.id, value: v })}
+                  />
+                ))}
               </div>
             </>
           )}

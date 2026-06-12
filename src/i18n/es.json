@@ -17,6 +17,7 @@
   "salesShare": "Participación",
   "salesShareWarning": "⚠ Las participaciones suman {{total}}%, no 100%",
   "addItem": "Agregar producto",
+  "addExpense": "Agregar gasto",
   "deleteItem": "Eliminar producto",
   "changeIcon": "Cambiar ícono",
   "itemName": "Nombre",

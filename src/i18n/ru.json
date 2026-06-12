@@ -17,6 +17,7 @@
   "salesShare": "Доля продаж",
   "salesShareWarning": "⚠ Сумма долей {{total}}%, а не 100%",
   "addItem": "Добавить позицию",
+  "addExpense": "Добавить расход",
   "deleteItem": "Удалить позицию",
   "changeIcon": "Изменить иконку",
   "itemName": "Название",

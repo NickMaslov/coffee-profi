@@ -1,5 +1,4 @@
-import type { PnLResult } from '../types'
-import type { FixedCosts } from '../types'
+import type { PnLResult, FixedCosts } from '../types'
 
 function fmtNum(n: number) {
   return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
@@ -9,7 +8,7 @@ function fmtPct(n: number) {
   return `${n.toFixed(1)}%`
 }
 
-export function exportCsv(pnl: PnLResult, fixedCosts: FixedCosts, fixedLabels: Record<keyof FixedCosts, string>) {
+export function exportCsv(pnl: PnLResult, fixedCosts: FixedCosts) {
   const rows: string[][] = []
 
   rows.push(['Monthly P&L Report'])
@@ -37,8 +36,8 @@ export function exportCsv(pnl: PnLResult, fixedCosts: FixedCosts, fixedLabels: R
   rows.push([])
 
   // Fixed Costs
-  for (const [key, label] of Object.entries(fixedLabels) as [keyof FixedCosts, string][]) {
-    rows.push(['Fixed Costs', label, '', fmtNum(-fixedCosts[key])])
+  for (const item of fixedCosts) {
+    rows.push(['Fixed Costs', item.name, '', fmtNum(-item.value)])
   }
   rows.push(['Fixed Costs', 'TOTAL', '', fmtNum(-pnl.monthlyFixedCosts)])
   rows.push([])

@@ -28,13 +28,13 @@ function loadScenarios(): SavedScenario[] {
 }
 
 const defaultState: AppState = {
-  fixedCosts: {
-    rent: 5000,
-    salaries: 8000,
-    utilities: 800,
-    equipmentAmortization: 600,
-    marketing: 400,
-  },
+  fixedCosts: [
+    { id: 'rent',                  name: 'Rent',                   value: 5000 },
+    { id: 'salaries',              name: 'Salaries',               value: 8000 },
+    { id: 'utilities',             name: 'Utilities',              value: 800  },
+    { id: 'equipmentAmortization', name: 'Equipment amortization', value: 600  },
+    { id: 'marketing',             name: 'Marketing',              value: 400  },
+  ],
   products: defaultProducts,
   theme: (localStorage.getItem('theme') as 'light' | 'dark') ?? 'light',
   language: (localStorage.getItem('language') as 'en' | 'ru' | 'es') ?? 'en',
@@ -42,7 +42,10 @@ const defaultState: AppState = {
 }
 
 type Action =
-  | { type: 'SET_FIXED'; key: keyof AppState['fixedCosts']; value: number }
+  | { type: 'SET_FIXED'; id: string; value: number }
+  | { type: 'SET_FIXED_NAME'; id: string; name: string }
+  | { type: 'ADD_FIXED' }
+  | { type: 'REMOVE_FIXED'; id: string }
   | { type: 'SET_PRODUCT'; id: string; key: keyof Omit<Product, 'id' | 'name' | 'iconKey'>; value: number }
   | { type: 'SET_PRODUCT_NAME'; id: string; name: string }
   | { type: 'SET_PRODUCT_ICON'; id: string; iconKey: ProductIcon }
@@ -57,7 +60,13 @@ type Action =
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'SET_FIXED':
-      return { ...state, fixedCosts: { ...state.fixedCosts, [action.key]: action.value } }
+      return { ...state, fixedCosts: state.fixedCosts.map(i => i.id === action.id ? { ...i, value: action.value } : i) }
+    case 'SET_FIXED_NAME':
+      return { ...state, fixedCosts: state.fixedCosts.map(i => i.id === action.id ? { ...i, name: action.name } : i) }
+    case 'ADD_FIXED':
+      return { ...state, fixedCosts: [...state.fixedCosts, { id: `fixed_${crypto.randomUUID()}`, name: 'New expense', value: 0 }] }
+    case 'REMOVE_FIXED':
+      return { ...state, fixedCosts: state.fixedCosts.filter(i => i.id !== action.id) }
     case 'SET_PRODUCT':
       return {
         ...state,
@@ -92,7 +101,7 @@ function reducer(state: AppState, action: Action): AppState {
         id: `scenario_${crypto.randomUUID()}`,
         name: action.name.trim() || `Scenario ${state.savedScenarios.length + 1}`,
         createdAt: Date.now(),
-        fixedCosts: { ...state.fixedCosts },
+        fixedCosts: state.fixedCosts.map(i => ({ ...i })),
         products: state.products.map(p => ({ ...p })),
       }
       return { ...state, savedScenarios: [...state.savedScenarios, scenario] }

@@ -1,7 +1,7 @@
 import type { FixedCosts, Product, BreakEvenResult, ChartDataPoint, PnLResult, ForecastDataPoint } from '../types'
 
 export function calcDailyFixedCosts(fixed: FixedCosts): number {
-  return (fixed.rent + fixed.salaries + fixed.utilities + fixed.equipmentAmortization + fixed.marketing) / 30
+  return fixed.reduce((s, item) => s + item.value, 0) / 30
 }
 
 export function calcTotalUnitsPerDay(products: Product[]): number {
@@ -44,7 +44,7 @@ export function calcPnL(fixed: FixedCosts, products: Product[]): PnLResult {
   const monthlyVariableCosts = products.reduce((s, p) => s + p.variableCostPerUnit * p.unitsPerDay * 30, 0)
   const grossProfit = monthlyRevenue - monthlyVariableCosts
   const grossMarginPct = monthlyRevenue > 0 ? (grossProfit / monthlyRevenue) * 100 : 0
-  const monthlyFixedCosts = Object.values(fixed).reduce((a, b) => a + b, 0)
+  const monthlyFixedCosts = fixed.reduce((s, item) => s + item.value, 0)
   const netProfit = grossProfit - monthlyFixedCosts
   const netMarginPct = monthlyRevenue > 0 ? (netProfit / monthlyRevenue) * 100 : 0
 
@@ -77,7 +77,7 @@ export function calcForecast(
   const baseUnits = calcTotalUnitsPerDay(products)
   const blendedRevPerUnit = calcBlendedRevenue(products)
   const blendedVarCostPerUnit = calcBlendedVariableCost(products)
-  const monthlyFixed = Object.values(fixed).reduce((a, b) => a + b, 0)
+  const monthlyFixed = fixed.reduce((s, item) => s + item.value, 0)
   const growthFactor = 1 + monthlyGrowthPct / 100
 
   const points: ForecastDataPoint[] = []

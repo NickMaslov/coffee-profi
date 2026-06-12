@@ -17,6 +17,7 @@
   "salesShare": "Sales share",
   "salesShareWarning": "⚠ Sales shares add up to {{total}}%, not 100%",
   "addItem": "Add item",
+  "addExpense": "Add expense",
   "deleteItem": "Delete item",
   "changeIcon": "Change icon",
   "itemName": "Item name",

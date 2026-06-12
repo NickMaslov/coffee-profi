@@ -56,18 +56,8 @@ export function ProfitLossCard() {
   const delta = pnl.netProfit - basePnl.netProfit
   const sliderPct = ((multiplier * 100 - 50) / 150) * 100
 
-  const fixedRows: Array<{ key: keyof typeof state.fixedCosts; label: string }> = [
-    { key: 'rent',                 label: t('rent') },
-    { key: 'salaries',             label: t('salaries') },
-    { key: 'utilities',            label: t('utilities') },
-    { key: 'equipmentAmortization', label: t('equipmentAmortization') },
-    { key: 'marketing',            label: t('marketing') },
-  ]
-
-  const fixedLabels = Object.fromEntries(fixedRows.map(r => [r.key, r.label])) as Record<keyof typeof state.fixedCosts, string>
-
   function handleCsv() {
-    exportCsv(pnl, state.fixedCosts, fixedLabels)
+    exportCsv(pnl, state.fixedCosts)
   }
 
   function handlePdf() {
@@ -198,11 +188,11 @@ export function ProfitLossCard() {
               <span>{t('fixedCosts')}</span>
               <span className={styles.red}>−{fmt(pnl.monthlyFixedCosts)}</span>
             </div>
-            {fixedRows.map(({ key, label }) => (
+            {state.fixedCosts.map(item => (
               <Row
-                key={key}
-                label={label}
-                value={-state.fixedCosts[key]}
+                key={item.id}
+                label={item.name}
+                value={-item.value}
                 colorClass={styles.red}
                 indent
               />

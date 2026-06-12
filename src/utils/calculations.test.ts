@@ -13,13 +13,13 @@ import type { FixedCosts, Product } from '../types'
 
 // --- fixtures ---
 
-const FIXED: FixedCosts = {
-  rent: 5000,
-  salaries: 8000,
-  utilities: 800,
-  equipmentAmortization: 600,
-  marketing: 400,
-} // total = 14 800 / mo → 493.33.../day
+const FIXED: FixedCosts = [
+  { id: 'rent',                  name: 'Rent',                   value: 5000 },
+  { id: 'salaries',              name: 'Salaries',               value: 8000 },
+  { id: 'utilities',             name: 'Utilities',              value: 800  },
+  { id: 'equipmentAmortization', name: 'Equipment amortization', value: 600  },
+  { id: 'marketing',             name: 'Marketing',              value: 400  },
+] // total = 14 800 / mo → 493.33.../day
 
 const PRODUCTS: Product[] = [
   { id: 'coffee',  name: 'Coffee',  iconKey: 'coffee',  pricePerUnit: 6.00, variableCostPerUnit: 1.25, unitsPerDay: 60 },
@@ -34,7 +34,7 @@ describe('calcDailyFixedCosts', () => {
   })
 
   it('returns 0 when all costs are 0', () => {
-    const zero: FixedCosts = { rent: 0, salaries: 0, utilities: 0, equipmentAmortization: 0, marketing: 0 }
+    const zero: FixedCosts = []
     expect(calcDailyFixedCosts(zero)).toBe(0)
   })
 })
